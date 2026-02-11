@@ -1,0 +1,73 @@
+{
+  "task_name": "[simple-task]",
+  "description": "[Brief description of straightforward task]",
+  "estimated_duration": "1-2 weeks",
+  "complexity_level": "simple", 
+  "stakeholders": ["[task_owner]", "[reviewer]"],
+  "validation_criteria": [
+    "Task completed according to requirements",
+    "Code/deliverable quality meets standards",
+    "Documentation updated"
+  ],
+  "steps": [
+    {
+      "id": 1,
+      "agent": "[primary-specialist]",
+      "task": "Analyze requirements and implement solution",
+      "deliverable": "implementation-and-docs.md",
+      "dependencies": [],
+      "estimated_time": "3-5 days",
+      "success_criteria": [
+        "Requirements clearly understood",
+        "Implementation follows best practices",
+        "Basic documentation provided"
+      ]
+    },
+    {
+      "id": 2,
+      "agent": "@validator",
+      "task": "Review implementation and validate quality",
+      "deliverable": "validation-report.md",
+      "dependencies": [1],
+      "estimated_time": "1-2 days",
+      "success_criteria": [
+        "Implementation meets requirements",
+        "Code quality standards satisfied",
+        "No critical issues identified"
+      ]
+    }
+  ],
+  "risk_factors": [
+    {
+      "category": "scope",
+      "description": "Requirements may be unclear",
+      "mitigation": "Early clarification with stakeholders"
+    },
+    {
+      "category": "technical",
+      "description": "Unexpected technical complexity",
+      "mitigation": "Quick escalation to more complex template if needed"
+    }
+  ],
+  "success_metrics": {
+    "delivery": {
+      "timeline_adherence": "Complete within estimated timeframe",
+      "quality_score": "Pass validation without major revisions"
+    },
+    "efficiency": {
+      "revision_cycles": "Maximum 1 revision cycle",
+      "stakeholder_satisfaction": "Meets or exceeds expectations"
+    }
+  },
+  "escalation_criteria": [
+    "Requirements significantly more complex than initially assessed",
+    "Integration with other systems required",
+    "Multiple domain expertise needed",
+    "Stakeholder disagreement on approach"
+  ],
+  "final_deliverables": [
+    "Completed implementation",
+    "Basic documentation",
+    "Validation report" 
+  ]
+}

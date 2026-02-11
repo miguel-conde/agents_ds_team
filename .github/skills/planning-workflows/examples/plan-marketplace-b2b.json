@@ -1,0 +1,236 @@
+{
+  "task_name": "b2b-marketplace-platform",
+  "description": "Desarrollo completo de marketplace B2B con IA y funcionalidades avanzadas",
+  "estimated_duration": "16-20 weeks", 
+  "complexity_level": "enterprise",
+  "stakeholders": ["business_owners", "sellers", "buyers", "payment_processors", "logistics_partners"],
+  "validation_criteria": [
+    "Escalabilidad para múltiples vendedores",
+    "UX optimizada para transacciones B2B", 
+    "IA efectiva para matching y recommendations",
+    "Integración robusta con sistemas empresariales",
+    "Modelo de ingresos sostenible"
+  ],
+  "steps": [
+    {
+      "id": 1,
+      "agent": "@business-specialist",
+      "task": "Analizar modelo de negocio para marketplace B2B y estrategia competitiva",
+      "deliverable": "b2b-marketplace-business-model.md",
+      "dependencies": [],
+      "estimated_time": "2 weeks",
+      "success_criteria": [
+        "Análisis de mercado B2B completo",
+        "Modelo de comisiones y pricing strategy",
+        "Estrategia de adquisición de sellers y buyers",
+        "Competitive positioning y value proposition"
+      ]
+    },
+    {
+      "id": 2,
+      "agent": "@tech-specialist",
+      "task": "Diseñar arquitectura técnica para marketplace escalable",
+      "deliverable": "marketplace-technical-architecture.md",
+      "dependencies": [1],
+      "estimated_time": "3 weeks",
+      "success_criteria": [
+        "Microservices architecture para multi-tenant",
+        "API gateway y service mesh",
+        "Data consistency across distributed systems",
+        "Integration capabilities con ERP systems"
+      ]
+    },
+    {
+      "id": 3,
+      "agent": "@data-specialist",
+      "task": "Desarrollar sistema de IA para matching de productos y recommendations",
+      "deliverable": "ai-matching-system-design.md",
+      "dependencies": [1],
+      "estimated_time": "3 weeks",
+      "success_criteria": [
+        "Algoritmos de matching seller-buyer",
+        "Sistema de recommendations personalizadas",
+        "Pricing optimization engine",
+        "Fraud detection y risk assessment"
+      ]
+    },
+    {
+      "id": 4,
+      "agent": "@creative-specialist",
+      "task": "Diseñar experiencia de usuario para transacciones B2B complejas",
+      "deliverable": "b2b-marketplace-ux-design.md",
+      "dependencies": [1],
+      "estimated_time": "3 weeks",
+      "success_criteria": [
+        "Multi-role user experience (buyers, sellers, admins)",
+        "Complex transaction workflows",
+        "Bulk ordering y procurement interfaces",
+        "Mobile experience para on-the-go decisions"
+      ]
+    },
+    {
+      "id": 5,  
+      "agent": "@validator",
+      "task": "Validar coherencia entre arquitectura, IA y UX for B2B context",
+      "deliverable": "b2b-integration-validation.md",
+      "dependencies": [2, 3, 4],
+      "estimated_time": "1 week",
+      "success_criteria": [
+        "Technical feasibility de IA en arquitectura",
+        "UX workflows alineados con B2B business processes", 
+        "Scalability verification para projected load",
+        "Integration points validated"
+      ]
+    },
+    {
+      "id": 6,
+      "agent": "@business-specialist", 
+      "task": "Desarrollar estrategia de onboarding para sellers y buyers",
+      "deliverable": "marketplace-onboarding-strategy.md",
+      "dependencies": [5],
+      "estimated_time": "2 weeks",
+      "success_criteria": [
+        "Seller onboarding process y requirements",
+        "Buyer verification y approval workflows",
+        "Incentive programs para early adopters",
+        "Support y training programs"
+      ]
+    },
+    {
+      "id": 7,
+      "agent": "@tech-specialist",
+      "task": "Diseñar payment processing y financial transaction systems",
+      "deliverable": "payment-systems-architecture.md",
+      "dependencies": [2, 6],
+      "estimated_time": "2 weeks", 
+      "success_criteria": [
+        "Multi-currency payment processing",
+        "Escrow y dispute resolution systems",
+        "Integration con enterprise accounting systems",
+        "PCI compliance y security standards"
+      ]
+    },
+    {
+      "id": 8,
+      "agent": "@data-specialist",
+      "task": "Implementar analytics y business intelligence para marketplace",
+      "deliverable": "marketplace-analytics-platform.md",
+      "dependencies": [3, 5],
+      "estimated_time": "2 weeks",
+      "success_criteria": [
+        "Real-time marketplace metrics dashboard",
+        "Seller performance analytics",
+        "Buyer behavior tracking",
+        "Revenue optimization insights"
+      ]
+    },
+    {
+      "id": 9,
+      "agent": "@creative-specialist",
+      "task": "Desarrollar mobile app strategy y responsive design",
+      "deliverable": "marketplace-mobile-strategy.md", 
+      "dependencies": [4, 5],
+      "estimated_time": "2 weeks",
+      "success_criteria": [
+        "Mobile-first design principles",
+        "Progressive web app capabilities",
+        "Offline functionality para key features",
+        "Push notifications strategy"
+      ]
+    },
+    {
+      "id": 10,
+      "agent": "@validator",
+      "task": "Validación final de platform readiness y go-live preparation",
+      "deliverable": "marketplace-readiness-assessment.md",
+      "dependencies": [7, 8, 9],
+      "estimated_time": "1 week",
+      "success_criteria": [
+        "End-to-end workflow validation",
+        "Performance y scalability verification",
+        "Security audit completion",
+        "Launch readiness checklist"
+      ]
+    }  
+  ],
+  "risk_factors": [
+    {
+      "category": "market",
+      "description": "Network effects - chicken-and-egg problem con sellers y buyers",
+      "mitigation": "Phased launch con targeted industry verticals"
+    },
+    {
+      "category": "technical",
+      "description": "Complex integration requirements con diverse enterprise systems", 
+      "mitigation": "API-first design y comprehensive integration testing"
+    },
+    {
+      "category": "financial",
+      "description": "High customer acquisition costs para B2B marketplace",
+      "mitigation": "Referral programs y strategic partnerships"
+    },
+    {
+      "category": "operational",
+      "description": "Managing disputes y transaction conflicts at scale",
+      "mitigation": "Automated workflow systems y expert mediation services"
+    }
+  ],
+  "integration_requirements": [
+    {
+      "system_type": "ERP Systems",
+      "examples": ["SAP", "Oracle", "Microsoft Dynamics"], 
+      "integration_method": "REST APIs y webhook notifications",
+      "data_sync": "Real-time product catalog y inventory"
+    },
+    {
+      "system_type": "Payment Processors",
+      "examples": ["Stripe", "PayPal", "enterprise banking"],
+      "integration_method": "SDK integration y API calls", 
+      "data_sync": "Transaction status y reconciliation"
+    },
+    {
+      "system_type": "Logistics Partners",
+      "examples": ["FedEx", "UPS", "DHL"],
+      "integration_method": "API integration para tracking",
+      "data_sync": "Shipment status y delivery confirmation"
+    }
+  ],
+  "success_metrics": {
+    "marketplace_health": {
+      "gross_merchandise_volume": "> $10M monthly by month 12",
+      "active_sellers": "> 1000",
+      "active_buyers": "> 5000", 
+      "repeat_purchase_rate": "> 60%"
+    },
+    "technical_performance": {
+      "page_load_time": "< 2 seconds",
+      "system_uptime": "> 99.8%",
+      "transaction_success_rate": "> 99.5%",
+      "mobile_performance_score": "> 90"
+    },
+    "business_performance": {
+      "commission_revenue": "> $500K monthly by month 12",
+      "seller_satisfaction": "> 4.3/5",
+      "buyer_satisfaction": "> 4.4/5",
+      "customer_support_resolution": "< 24 hours"
+    }
+  },
+  "technology_stack": {
+    "backend": ["Node.js/TypeScript", "PostgreSQL", "Redis", "Elasticsearch"],
+    "frontend": ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+    "mobile": ["React Native", "Expo"], 
+    "infrastructure": ["AWS", "Docker", "Kubernetes", "CI/CD Pipeline"],
+    "ai_ml": ["TensorFlow", "Python", "Apache Kafka", "MLflow"],
+    "monitoring": ["DataDog", "Sentry", "New Relic"]
+  },
+  "final_deliverables": [
+    "Complete marketplace platform MVP",
+    "Seller y buyer onboarding systems",
+    "AI-powered matching y recommendation engine",
+    "Payment processing y financial systems",
+    "Mobile applications (iOS/Android)",
+    "Admin dashboard y analytics platform",
+    "Integration APIs para enterprise systems",
+    "Comprehensive documentation y training materials"
+  ]
+}

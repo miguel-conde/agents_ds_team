@@ -1,0 +1,348 @@
+{
+  "task_name": "customer-churn-prediction",
+  "description": "Develop ML model to predict customer churn 30 days in advance for proactive retention campaigns",
+  "estimated_duration": "8-12 weeks",
+  "complexity_level": "moderate-ds",
+  "business_objective": "Reduce customer churn by 15% through proactive identification and targeted retention campaigns",
+  "stakeholders": [
+    "VP Customer Success", 
+    "Marketing Director", 
+    "Data Engineering Team Lead",
+    "Product Analytics Manager"
+  ],
+  
+  "deliverables": [
+    {
+      "owner": "@data-engineer",
+      "name": "Customer Data Pipeline", 
+      "paths": ["data/customer/", "pipelines/churn/", "tests/data_quality/"],
+      "dod": "customer_features contract + DQ tests (>95% pass) + daily refresh pipeline + lineage docs",
+      "reviewer": "@ds-validator"
+    },
+    {
+      "owner": "@data-scientist",
+      "name": "Churn Prediction Model",
+      "paths": ["models/churn/", "experiments/churn/", "notebooks/churn_analysis/"],
+      "dod": "baseline comparison + temporal validation + feature spec + leakage prevention + >20% improvement over baseline",
+      "reviewer": "@ds-validator"
+    },
+    {
+      "owner": "@ml-engineer", 
+      "name": "Churn Scoring Service",
+      "paths": ["deployment/churn/", "monitoring/churn/", "serving/churn/"],
+      "dod": "daily batch scoring + drift monitoring + model registry + rollback capability",
+      "reviewer": "@ds-validator"
+    }
+  ],
+
+  "data_contracts": [
+    {
+      "source": "customer_activity_events",
+      "schema": {
+        "table_name": "customer_features_daily",
+        "primary_key": ["customer_id", "feature_date"],
+        "columns": [
+          {
+            "name": "customer_id",
+            "type": "STRING", 
+            "nullable": false,
+            "constraints": ["matches customer master record"]
+          },
+          {
+            "name": "feature_date",
+            "type": "DATE",
+            "nullable": false,
+            "constraints": ["within last 2 years"]
+          },
+          {
+            "name": "monthly_spend",
+            "type": "DECIMAL(10,2)",
+            "nullable": true,
+            "constraints": [">= 0", "< 100000"]
+          },
+          {
+            "name": "transaction_count_30d",
+            "type": "INTEGER",
+            "nullable": true,
+            "constraints": [">= 0", "< 10000"]
+          },
+          {
+            "name": "last_login_days_ago",
+            "type": "INTEGER",
+            "nullable": true,
+            "constraints": [">= 0", "< 365"]
+          },
+          {
+            "name": "support_tickets_30d",
+            "type": "INTEGER", 
+            "nullable": true,
+            "constraints": [">= 0", "< 100"]
+          }
+        ]
+      },
+      "quality_constraints": {
+        "freshness": "24 hours (daily refresh by 6 AM)",
+        "completeness": ">95% non-null for customer_id, feature_date",
+        "uniqueness": "no duplicates on (customer_id, feature_date)", 
+        "validity": "feature_date <= current_date - 1"
+      },
+      "sla": {
+        "availability": "99.5% uptime",
+        "refresh_frequency": "daily",
+        "max_delay": "6 hours from source data update"
+      },
+      "lineage": {
+        "upstream_sources": ["transactions", "user_activity", "support_tickets"],
+        "transformations": ["daily aggregation", "rolling windows", "recency calculations"],
+        "downstream_consumers": ["churn_model", "customer_analytics", "retention_campaigns"]
+      }
+    }
+  ],
+
+  "evaluation_protocol": {
+    "business_metrics": [
+      {
+        "name": "churn_reduction",
+        "description": "Percentage reduction in actual churn rate through early intervention",
+        "target": "15% reduction in 90-day churn rate within 6 months"
+      },
+      {
+        "name": "campaign_efficiency", 
+        "description": "Cost savings from targeted vs broadcast retention campaigns",
+        "target": "$500K annual savings through targeted campaigns"
+      }
+    ],
+    "model_metrics": ["precision", "recall", "f1", "auc", "precision@k"],
+    "validation_strategy": "temporal_split",
+    "temporal_validation": {
+      "training_period": "2023-01-01 to 2024-09-30", 
+      "validation_period": "2024-10-01 to 2024-12-31",
+      "prediction_horizon": "30 days",
+      "minimum_gap": "30 days between latest training data and prediction window"
+    },
+    "baseline": {
+      "type": "historical_average",
+      "description": "30-day churn rate average over last 12 months",
+      "expected_performance": "5.2% baseline churn rate"
+    },
+    "success_criteria": {
+      "minimum_improvement": "Precision@10% > 0.25 (5x better than random)",
+      "business_impact": "Identify 60% of churning customers in top 10% scored",
+      "statistical_significance": "p < 0.05 vs. baseline with 30-day holdout test"
+    }
+  },
+
+  "feature_engineering": {
+    "leakage_prevention": {
+      "prediction_cutoff": "T-30 days (30 days before churn event)",
+      "future_information_checks": ["no support resolution times", "no future transaction data", "no cancellation survey results"],
+      "validation_tests": ["temporal_boundary_check", "feature_availability_test", "prediction_horizon_validation"]
+    },
+    "feature_categories": [
+      {
+        "category": "behavioral",
+        "features": ["login_frequency_30d", "transaction_velocity", "feature_usage_decline"],
+        "transformation_logic": "rolling 30-day windows with proper temporal boundaries",
+        "business_rationale": "declining engagement patterns predict churn"
+      },
+      {
+        "category": "financial",
+        "features": ["spend_decline_rate", "payment_failures_30d", "plan_downgrade_events"],
+        "transformation_logic": "trend analysis and event counting within prediction window",
+        "business_rationale": "financial stress indicators correlate with churn"
+      },
+      {
+        "category": "support",
+        "features": ["unresolved_tickets", "escalation_events", "satisfaction_trend"],
+        "transformation_logic": "aggregation of support interactions, excluding resolution outcomes",
+        "business_rationale": "support issues often precede churn decisions"
+      }
+    ]
+  },
+
+  "mlops_requirements": {
+    "reproducibility": {
+      "required": true,
+      "variance_tolerance": "<0.5% AUC difference across training runs",
+      "seed_management": "fixed seeds for train/val splits and model initialization",
+      "environment": "Docker container with pinned package versions"
+    },
+    "model_registry": {
+      "required": true,
+      "versioning": "semantic versioning (v1.0.0, v1.1.0, etc.)",
+      "metadata": "AUC, precision@k, feature importance, training data version",
+      "lineage": "training dataset fingerprint + feature pipeline version"
+    },
+    "monitoring": {
+      "data_drift": "KS tests on feature distributions vs. training data",
+      "prediction_drift": "churn score distribution and prediction rate monitoring", 
+      "performance_drift": "actual churn rate vs. predicted in top deciles",
+      "alerting": "Slack alerts for >10% drift, escalation after 3 consecutive days"
+    },
+    "deployment": {
+      "strategy": "blue_green",
+      "rollback": "automated rollback if precision@10% drops below 0.20",
+      "testing": "smoke tests on historical data + A/B test framework"
+    }
+  },
+
+  "steps": [
+    {
+      "id": 1,
+      "agent": "@data-engineer",
+      "task": "Customer Data Discovery and Contract Definition",
+      "deliverable": "customer-data-contracts.json",
+      "dependencies": [],
+      "estimated_time": "5 days",
+      "success_criteria": [
+        "Customer activity data sources mapped and accessible",
+        "Churn definition agreed with business (30-day no activity)",
+        "Data refresh timeline established (daily by 6 AM)"
+      ]
+    },
+    {
+      "id": 2,
+      "agent": "@data-engineer", 
+      "task": "Customer Features Pipeline Development",
+      "deliverable": "pipelines/customer_features/",
+      "dependencies": [1],
+      "estimated_time": "10 days",
+      "success_criteria": [
+        "Daily pipeline produces customer features with >95% DQ pass rate",
+        "Pipeline idempotent and handles late-arriving data",
+        "Monitoring and alerting configured for pipeline failures"
+      ]
+    },
+    {
+      "id": 3,
+      "agent": "@ds-validator",
+      "task": "Customer Data Pipeline Validation", 
+      "deliverable": "reports/customer-data-validation.md",
+      "dependencies": [2],
+      "estimated_time": "3 days",
+      "success_criteria": [
+        "Data contracts meet DS requirements",
+        "Quality thresholds consistently achieved",
+        "No temporal issues in feature construction"
+      ]
+    },
+    {
+      "id": 4,
+      "agent": "@data-scientist",
+      "task": "Churn Pattern Analysis and Baseline",
+      "deliverable": "notebooks/churn_baseline_analysis.ipynb",
+      "dependencies": [3],
+      "estimated_time": "7 days",
+      "success_criteria": [
+        "Churn patterns identified across customer segments",
+        "Baseline established: 5.2% 30-day churn rate",
+        "Feature correlation analysis completed without leakage"
+      ]
+    },
+    {
+      "id": 5,
+      "agent": "@data-scientist",
+      "task": "Churn Model Development and Validation",
+      "deliverable": "models/churn_v1/",
+      "dependencies": [4],
+      "estimated_time": "14 days", 
+      "success_criteria": [
+        "Model achieves precision@10% > 0.25 with temporal validation",
+        "No data leakage detected in feature engineering",
+        "Reproducible training with <0.5% performance variance"
+      ]
+    },
+    {
+      "id": 6,
+      "agent": "@ds-validator",
+      "task": "Churn Model Validation and Leakage Check",
+      "deliverable": "reports/churn-model-validation.md", 
+      "dependencies": [5],
+      "estimated_time": "4 days",
+      "success_criteria": [
+        "Comprehensive leakage analysis shows no future information usage",
+        "Statistical significance confirmed vs. baseline",
+        "Temporal validation methodology sound"
+      ]
+    },
+    {
+      "id": 7,
+      "agent": "@ml-engineer",
+      "task": "Churn Scoring Service Development",
+      "deliverable": "deployment/churn_scoring_service/",
+      "dependencies": [6], 
+      "estimated_time": "12 days",
+      "success_criteria": [
+        "Daily batch scoring pipeline produces churn scores",
+        "Service meets <1 hour SLA for daily scoring",
+        "Model registry integration with version tracking"
+      ]
+    },
+    {
+      "id": 8,
+      "agent": "@ds-validator",
+      "task": "Production Readiness and Launch Validation",
+      "deliverable": "reports/churn-production-readiness.md",
+      "dependencies": [7],
+      "estimated_time": "3 days", 
+      "success_criteria": [
+        "Drift monitoring alerts configured and tested",
+        "Rollback procedures validated on staging environment",
+        "Business stakeholders trained on score interpretation"
+      ]
+    }
+  ],
+
+  "risks": [
+    {
+      "category": "data_leakage",
+      "description": "Support resolution times or cancellation survey results used as features",
+      "probability": "medium",
+      "impact": "high",
+      "mitigation": "Strict 30-day prediction boundary + automated leakage detection tests"
+    },
+    {
+      "category": "concept_drift",
+      "description": "Customer behavior changes due to external factors (economy, competition)",
+      "probability": "high",
+      "impact": "medium", 
+      "mitigation": "Monthly model retraining + drift monitoring + A/B testing framework"
+    },
+    {
+      "category": "label_quality",
+      "description": "Churn definition ambiguity (temporary vs. permanent inactivity)",
+      "probability": "medium",
+      "impact": "medium",
+      "mitigation": "Clear churn definition with business + validation on known churner samples"
+    },
+    {
+      "category": "business_adoption", 
+      "description": "Marketing team doesn't effectively use churn scores for campaigns",
+      "probability": "medium",
+      "impact": "high",
+      "mitigation": "Close collaboration with marketing + campaign effectiveness tracking + training"
+    }
+  ],
+
+  "acceptance_criteria": {
+    "data_quality": ">95% DQ test pass rate sustained over 60 days",
+    "model_performance": "Precision@10% > 0.25 (5x better than random targeting)",
+    "reproducibility": "<0.5% AUC variance across model training runs",
+    "production_sla": "Daily churn scores delivered by 9 AM for marketing campaigns",
+    "business_impact": "15% reduction in 90-day churn rate within 6 months of deployment"
+  },
+
+  "technology_stack": {
+    "data_pipeline": ["Apache Airflow", "BigQuery", "dbt"],
+    "ml_framework": ["scikit-learn", "MLflow", "BigQuery ML"],
+    "deployment": ["Docker", "Google Cloud Run", "Vertex AI"],
+    "infrastructure": ["GCP", "Cloud Functions", "Looker Studio"]
+  },
+
+  "final_deliverables": [
+    "Daily customer features pipeline with quality monitoring",
+    "Validated churn prediction model with temporal evaluation",
+    "Automated daily churn scoring service with drift detection", 
+    "Business dashboard and campaign integration for retention teams"
+  ]
+}

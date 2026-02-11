@@ -1,0 +1,219 @@
+{
+  "task_name": "[complex-enterprise-project]",
+  "description": "[Comprehensive description covering multiple domains and integration challenges]",
+  "estimated_duration": "8-16 weeks",
+  "complexity_level": "complex",
+  "stakeholders": ["[executive_sponsor]", "[technical_lead]", "[business_owner]", "[end_users]", "[compliance_team]"],
+  "validation_criteria": [
+    "Multi-domain integration validated",
+    "Scalability and performance requirements met",
+    "Compliance and security standards satisfied",
+    "User experience excellence achieved",
+    "Data architecture future-proofed"
+  ],
+  "steps": [
+    {
+      "id": 1,
+      "agent": "@business-specialist",
+      "task": "Comprehensive business strategy and requirements analysis",
+      "deliverable": "business-strategy-comprehensive.md",
+      "dependencies": [],
+      "estimated_time": "1 week",
+      "success_criteria": [
+        "Complete stakeholder analysis",
+        "Strategic objectives clearly defined",
+        "Business model validated",
+        "Market analysis completed"
+      ]
+    },
+    {
+      "id": 2,
+      "agent": "@data-specialist",
+      "task": "Data landscape analysis and initial architecture design",
+      "deliverable": "data-landscape-analysis.md",
+      "dependencies": [1],
+      "estimated_time": "1 week", 
+      "success_criteria": [
+        "Current data state assessed",
+        "Data requirements identified",
+        "Privacy and compliance needs mapped",
+        "Analytics strategy outlined"
+      ]
+    },
+    {
+      "id": 3,
+      "agent": "@validator",
+      "task": "Validate business-data alignment and early risk assessment",
+      "deliverable": "validation-report-step3.md",
+      "dependencies": [1, 2],
+      "estimated_time": "3-4 days",
+      "success_criteria": [
+        "Business objectives support data strategy",
+        "Data availability confirmed for business needs",
+        "Early risk factors identified"
+      ]
+    },
+    {
+      "id": 4,
+      "agent": "@tech-specialist",
+      "task": "Enterprise-grade technical architecture design",
+      "deliverable": "enterprise-technical-architecture.md",
+      "dependencies": [1, 2],
+      "estimated_time": "1-2 weeks",
+      "success_criteria": [
+        "Scalable cloud-native architecture",
+        "Security framework implemented",
+        "Integration patterns defined",
+        "Performance benchmarks established"
+      ]
+    },
+    {
+      "id": 5,
+      "agent": "@creative-specialist",
+      "task": "Multi-platform UX strategy and design system",
+      "deliverable": "comprehensive-ux-strategy.md",
+      "dependencies": [1, 4],
+      "estimated_time": "1-2 weeks",
+      "success_criteria": [
+        "Design system architecture",
+        "Multi-platform consistency",
+        "Accessibility compliance",
+        "User journey optimization"
+      ]
+    },
+    {
+      "id": 6,
+      "agent": "@validator",
+      "task": "Mid-project technical and design integration validation",
+      "deliverable": "validation-report-step6.md",
+      "dependencies": [4, 5],
+      "estimated_time": "3-5 days",
+      "success_criteria": [
+        "Technical architecture supports UX requirements",
+        "Performance implications of design choices validated",
+        "Implementation complexity assessed"
+      ]
+    },
+    {
+      "id": 7,
+      "agent": "@data-specialist",
+      "task": "Advanced analytics and ML pipeline architecture",
+      "deliverable": "advanced-analytics-architecture.md",
+      "dependencies": [4, 6],
+      "estimated_time": "1-2 weeks",
+      "success_criteria": [
+        "ML pipeline architecture designed",
+        "Real-time analytics capability",
+        "Data governance framework",
+        "Monitoring and alerting systems"
+      ]
+    },
+    {
+      "id": 8,
+      "agent": "@tech-specialist",
+      "task": "Integration architecture and deployment strategy",
+      "deliverable": "integration-deployment-strategy.md",
+      "dependencies": [6, 7],
+      "estimated_time": "1 week",
+      "success_criteria": [
+        "CI/CD pipeline architecture",
+        "Environment management strategy",
+        "Rollback and disaster recovery plans",
+        "Monitoring and observability framework"
+      ]
+    },
+    {
+      "id": 9,
+      "agent": "@business-specialist",
+      "task": "Implementation roadmap and change management strategy",
+      "deliverable": "implementation-roadmap.md",
+      "dependencies": [7, 8],
+      "estimated_time": "1 week",
+      "success_criteria": [
+        "Phased implementation plan",
+        "Change management strategy",
+        "Training and adoption plans",
+        "Success measurement framework"
+      ]
+    },
+    {
+      "id": 10,
+      "agent": "@validator",
+      "task": "Comprehensive final integration validation",
+      "deliverable": "final-comprehensive-validation.md",
+      "dependencies": [8, 9],
+      "estimated_time": "1 week",
+      "success_criteria": [
+        "All components coherently integrated",
+        "No critical architectural conflicts",
+        "Implementation readiness confirmed",
+        "Risk mitigation strategies validated"
+      ]
+    }
+  ],
+  "risk_factors": [
+    {
+      "category": "technical",
+      "description": "Complex system integration challenges",
+      "mitigation": "Incremental integration with extensive testing"
+    },
+    {
+      "category": "business",
+      "description": "Stakeholder coordination complexity",
+      "mitigation": "Regular alignment meetings and clear governance"
+    },
+    {
+      "category": "operational",
+      "description": "Change management during implementation",
+      "mitigation": "Comprehensive training and phased rollout"
+    },
+    {
+      "category": "market",
+      "description": "Changing market conditions during development",
+      "mitigation": "Flexible architecture and regular strategy reviews"
+    }
+  ],
+  "integration_requirements": [
+    {
+      "system_type": "Enterprise applications",
+      "examples": ["CRM", "ERP", "Legacy systems"],
+      "integration_method": "API Gateway with microservices",
+      "data_sync": "Real-time and batch synchronization"
+    },
+    {
+      "system_type": "External services",
+      "examples": ["Payment processors", "Third-party APIs"],
+      "integration_method": "REST APIs with circuit breakers",
+      "data_sync": "Event-driven architecture"
+    }
+  ],
+  "success_metrics": {
+    "delivery": {
+      "timeline_adherence": "90%+ of milestones met within tolerance",
+      "quality_score": "95%+ validation pass rate",
+      "budget_adherence": "Within 10% of approved budget"
+    },
+    "technical": {
+      "performance": "Sub-second response times for 95% of operations",
+      "scalability": "Handle 10x current load without degradation",
+      "availability": "99.9% uptime SLA"
+    },
+    "business": {
+      "user_adoption": "80%+ user adoption within first quarter",
+      "roi_achievement": "Positive ROI within 12 months",
+      "stakeholder_satisfaction": "90%+ satisfaction scores"
+    }
+  },
+  "technology_stack": {
+    "frontend": ["React/Vue.js", "TypeScript", "Progressive Web App"],
+    "backend": ["Node.js/Python", "Microservices", "Container orchestration"],
+    "data": ["Cloud databases", "Data lakes", "ML platforms"],
+    "infrastructure": ["Cloud-native", "Kubernetes", "Monitoring tools"]
+  },
+  "final_deliverables": [
+    "Complete enterprise-grade system specification",
+    "Phased implementation roadmap with risk mitigation",
+    "Change management and training strategy",
+    "Monitoring and success measurement framework"
+  ]
+}

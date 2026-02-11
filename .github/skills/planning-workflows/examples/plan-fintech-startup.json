@@ -1,0 +1,172 @@
+{
+  "task_name": "fintech-ai-startup",
+  "description": "Desarrollo completo de startup FinTech con IA para análisis de inversiones",
+  "estimated_duration": "12-16 weeks",
+  "complexity_level": "enterprise",
+  "stakeholders": ["founders", "investors", "regulatory_bodies", "target_customers"],
+  "validation_criteria": [
+    "Cumplimiento regulatorio financiero",
+    "Viabilidad técnica de algoritmos ML",
+    "Model de negocio sostenible",
+    "Experiencia de usuario apropiada para finanzas",
+    "Seguridad y privacidad de datos"
+  ],
+  "steps": [
+    {
+      "id": 1,
+      "agent": "@business-specialist",
+      "task": "Analizar modelo de negocio y viabilidad comercial para startup FinTech con IA",
+      "deliverable": "business-strategy-fintech.md",
+      "dependencies": [],
+      "estimated_time": "1-2 weeks",
+      "success_criteria": [
+        "Análisis de mercado completo",
+        "Modelo de ingresos definido",
+        "Estrategia competitiva clara",
+        "Proyecciones financieras realistas"
+      ]
+    },
+    {
+      "id": 2,
+      "agent": "@data-specialist", 
+      "task": "Diseñar arquitectura de datos y algoritmos ML para análisis de inversiones",
+      "deliverable": "ml-architecture-investment-analysis.md",
+      "dependencies": [1],
+      "estimated_time": "2-3 weeks",
+      "success_criteria": [
+        "Arquitectura de datos escalable",
+        "Algoritmos ML validados",
+        "Pipeline de procesamiento definido",
+        "Métricas de performance establecidas"
+      ]
+    },
+    {
+      "id": 3,
+      "agent": "@tech-specialist",
+      "task": "Diseñar infraestructura técnica segura para plataforma FinTech",
+      "deliverable": "technical-architecture-fintech.md", 
+      "dependencies": [1, 2],
+      "estimated_time": "2-3 weeks",
+      "success_criteria": [
+        "Arquitectura cloud-native segura",
+        "Compliance con regulaciones financieras",
+        "Escalabilidad para growth",
+        "Integración con servicios financieros"
+      ]
+    },
+    {
+      "id": 4,
+      "agent": "@creative-specialist",
+      "task": "Diseñar experiencia de usuario para plataforma financiera con IA",
+      "deliverable": "ux-design-investment-platform.md",
+      "dependencies": [1],
+      "estimated_time": "2-3 weeks", 
+      "success_criteria": [
+        "Interface intuitiva para análisis financiero",
+        "Visualización clara de insights de IA",
+        "Experiencia mobile-first",
+        "Accesibilidad y compliance con estándares"
+      ]
+    },
+    {
+      "id": 5,
+      "agent": "@validator",
+      "task": "Validación integral de coherencia entre componentes",
+      "deliverable": "integration-validation-report.md",
+      "dependencies": [2, 3, 4],
+      "estimated_time": "1 week",
+      "success_criteria": [
+        "Coherencia entre estrategia y arquitectura",
+        "Alineación UX con capacidades técnicas",
+        "Viabilidad de implementación ML",
+        "Compliance integral verificado"
+      ]
+    },
+    {
+      "id": 6,
+      "agent": "@business-specialist",
+      "task": "Plan de implementación y go-to-market strategy",
+      "deliverable": "implementation-roadmap.md",
+      "dependencies": [5],
+      "estimated_time": "1-2 weeks",
+      "success_criteria": [
+        "Roadmap de desarrollo por fases",
+        "Estrategia de lanzamiento al mercado", 
+        "Plan de funding y recursos",
+        "Métricas de éxito y KPIs"
+      ]
+    },
+    {
+      "id": 7,
+      "agent": "@tech-specialist",
+      "task": "MVP development plan y technical implementation phases",
+      "deliverable": "mvp-development-plan.md",
+      "dependencies": [6],
+      "estimated_time": "1 week",
+      "success_criteria": [
+        "Plan de desarrollo MVP detallado",
+        "Timeline de implementación",
+        "Recursos técnicos necesarios",
+        "Testing y deployment strategy"
+      ]
+    },
+    {
+      "id": 8,
+      "agent": "@validator",
+      "task": "Validación final y consolidación de plan integral",
+      "deliverable": "final-integration-plan.md", 
+      "dependencies": [6, 7],
+      "estimated_time": "1 week",
+      "success_criteria": [
+        "Plan integral coherente y ejecutable",
+        "Timeline realista validado",
+        "Recursos identificados y disponibles",
+        "Risk mitigation plan completo"
+      ]
+    }
+  ],
+  "risk_factors": [
+    {
+      "category": "regulatory",
+      "description": "Cambios en regulaciones financieras",
+      "mitigation": "Consulta legal continua y monitoring regulatorio"
+    },
+    {
+      "category": "technical",
+      "description": "Complejidad de algoritmos ML para análisis financiero",
+      "mitigation": "Prototipado iterativo y validación con expertos"
+    },
+    {
+      "category": "market", 
+      "description": "Adopción lenta de IA en finanzas tradicionales",
+      "mitigation": "Estrategia educacional y partnerships estratégicos"
+    }
+  ],
+  "success_metrics": {
+    "business": {
+      "customer_acquisition_cost": "< $500",
+      "monthly_recurring_revenue_growth": "> 15%",
+      "customer_lifetime_value": "> $10000"
+    },
+    "technical": {
+      "ml_model_accuracy": "> 85%", 
+      "system_uptime": "> 99.5%",
+      "api_response_time": "< 200ms"
+    },
+    "user_experience": {
+      "user_satisfaction_score": "> 4.2/5",
+      "task_completion_rate": "> 90%",
+      "mobile_usability": "WCAG AA compliant"
+    }
+  },
+  "final_deliverables": [
+    "Comprehensive business plan",
+    "Technical architecture documentation",
+    "ML model specifications", 
+    "UX design system y prototypes",
+    "Implementation roadmap",
+    "MVP development plan",
+    "Go-to-market strategy",
+    "Regulatory compliance plan"
+  ]
+}

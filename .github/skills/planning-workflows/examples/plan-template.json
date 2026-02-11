@@ -1,0 +1,117 @@
+{
+  "task_name": "[descriptive-project-name]",
+  "description": "[Brief description of the project goals and scope]",
+  "estimated_duration": "[X-Y weeks/months]",
+  "complexity_level": "[simple|moderate|complex|enterprise]",
+  "stakeholders": ["[stakeholder1]", "[stakeholder2]", "[stakeholder3]"],
+  "validation_criteria": [
+    "[Validation criterion 1]",
+    "[Validation criterion 2]", 
+    "[Validation criterion 3]"
+  ],
+  "steps": [
+    {
+      "id": 1,
+      "agent": "@[specialist-agent-name]",
+      "task": "[Detailed description of what needs to be accomplished]",
+      "deliverable": "[filename-of-deliverable].md",
+      "dependencies": [],
+      "estimated_time": "[time estimate]",
+      "success_criteria": [
+        "[Success criterion 1]",
+        "[Success criterion 2]",
+        "[Success criterion 3]"
+      ]
+    },
+    {
+      "id": 2,
+      "agent": "@[specialist-agent-name]",
+      "task": "[Detailed description of what needs to be accomplished]",
+      "deliverable": "[filename-of-deliverable].md",
+      "dependencies": [1],
+      "estimated_time": "[time estimate]",
+      "success_criteria": [
+        "[Success criterion 1]",
+        "[Success criterion 2]"
+      ]
+    },
+    {
+      "id": 3,
+      "agent": "@validator", 
+      "task": "Validate coherence and integration between components from previous steps",
+      "deliverable": "validation-report-step[X].md",
+      "dependencies": "[list of step IDs to validate]",
+      "estimated_time": "3-5 days",
+      "success_criteria": [
+        "No contradictions between specialist recommendations",
+        "All requirements adequately addressed", 
+        "Implementation feasibility confirmed"
+      ]
+    }
+  ],
+  "risk_factors": [
+    {
+      "category": "[technical|business|market|operational]",
+      "description": "[Description of the risk]",
+      "mitigation": "[Strategy to mitigate this risk]"
+    }
+  ],
+  "integration_requirements": [
+    {
+      "system_type": "[Type of system to integrate]",
+      "examples": ["[Example 1]", "[Example 2]"],
+      "integration_method": "[API|SDK|Database|File|etc.]",
+      "data_sync": "[What data needs to be synchronized]"
+    }
+  ],
+  "success_metrics": {
+    "[category_name_1]": {
+      "[metric_name_1]": "[target value and timeframe]",
+      "[metric_name_2]": "[target value and timeframe]"
+    },
+    "[category_name_2]": {
+      "[metric_name_1]": "[target value and timeframe]",
+      "[metric_name_2]": "[target value and timeframe]"
+    }
+  },
+  "technology_stack": {
+    "[component_category_1]": ["[Technology 1]", "[Technology 2]"],
+    "[component_category_2]": ["[Technology 1]", "[Technology 2]"],
+    "[component_category_3]": ["[Technology 1]", "[Technology 2]"]
+  },
+  "final_deliverables": [
+    "[Deliverable 1 - detailed description]",
+    "[Deliverable 2 - detailed description]",
+    "[Deliverable 3 - detailed description]"
+  ],
+  "__template_instructions__": {
+    "usage": "This is a template for creating planning files for complex workflows",
+    "agent_options": [
+      "@router - for orchestration and coordination",
+      "@tech-specialist - for technical architecture and implementation",
+      "@business-specialist - for business strategy and viability",  
+      "@creative-specialist - for UX/UI design and user experience",
+      "@data-specialist - for analytics, ML/AI and data architecture",
+      "@validator - for quality assurance and coherence validation"
+    ],
+    "step_guidelines": [
+      "Start with business/requirements analysis (usually @business-specialist)",
+      "Include technical feasibility early (@tech-specialist)", 
+      "Add validation steps after every 2-3 specialist steps",
+      "End with final integration validation by @validator",
+      "Ensure dependencies are realistic and ordered properly"
+    ],
+    "complexity_guidelines": {
+      "simple": "1-3 agents, 3-5 steps, 2-4 weeks",
+      "moderate": "2-4 agents, 5-8 steps, 4-8 weeks", 
+      "complex": "3-5 agents, 8-12 steps, 8-16 weeks",
+      "enterprise": "4-6 agents, 12+ steps, 16+ weeks"
+    },
+    "validation_best_practices": [
+      "Add @validator step after every 2-3 specialist steps",
+      "Always validate before final deliverable consolidation",
+      "Include cross-domain validation for complex integrations",
+      "Validate both technical feasibility and business viability"
+    ]
+  }
+}

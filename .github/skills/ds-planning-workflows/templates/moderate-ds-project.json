@@ -1,0 +1,231 @@
+{
+  "task_name": "moderate-ds-project-template",
+  "description": "Template for moderate complexity DS projects requiring data engineering, modeling, and basic production deployment",
+  "estimated_duration": "8-12 weeks",
+  "complexity_level": "moderate-ds",
+  "business_objective": "[Define clear business question with quantifiable success metrics]",
+  "stakeholders": [
+    "[Business stakeholder]", 
+    "[Technical stakeholder]", 
+    "[Data owner/steward]"
+  ],
+  
+  "deliverables": [
+    {
+      "owner": "@data-engineer",
+      "name": "Data Pipeline and Quality Framework", 
+      "paths": ["data/", "pipelines/", "tests/data_quality/"],
+      "dod": "data_contract + DQ tests (>95% pass) + automated pipeline + runbook",
+      "reviewer": "@ds-validator"
+    },
+    {
+      "owner": "@data-scientist",
+      "name": "Model Development and Validation",
+      "paths": ["models/", "experiments/", "notebooks/"],
+      "dod": "baseline comparison + evaluation protocol + reproducible training + feature documentation",
+      "reviewer": "@ds-validator"
+    },
+    {
+      "owner": "@ml-engineer", 
+      "name": "Model Deployment and Monitoring",
+      "paths": ["deployment/", "monitoring/", "serving/"],
+      "dod": "automated serving + basic monitoring + rollback capability + performance tracking",
+      "reviewer": "@ds-validator"
+    }
+  ],
+
+  "data_contracts": [
+    {
+      "source": "[primary_data_source]",
+      "schema": {
+        "table_name": "[target_table_name]",
+        "primary_key": ["[key_column]"],
+        "columns": [
+          {
+            "name": "[feature_column]",
+            "type": "[DATA_TYPE]", 
+            "nullable": "[true|false]",
+            "constraints": ["[business_constraint]"]
+          }
+        ]
+      },
+      "quality_constraints": {
+        "freshness": "[X hours] from source update",
+        "completeness": ">95% non-null for critical fields",
+        "uniqueness": "no duplicates on primary key", 
+        "validity": "[business_rule_validation]"
+      },
+      "sla": {
+        "availability": "99.5% uptime",
+        "refresh_frequency": "[daily|hourly]",
+        "max_delay": "[X hours]"
+      }
+    }
+  ],
+
+  "evaluation_protocol": {
+    "business_metrics": [
+      {
+        "name": "[business_kpi]",
+        "description": "[how_it_measures_value]",
+        "target": "[target_improvement]"
+      }
+    ],
+    "model_metrics": ["[primary_metric]", "[secondary_metric]"],
+    "validation_strategy": "[temporal_split|cross_validation]",
+    "baseline": {
+      "type": "[simple_heuristic|business_rules|historical_performance]",
+      "description": "[baseline_methodology]",
+      "expected_performance": "[baseline_metric_value]"
+    },
+    "success_criteria": {
+      "minimum_improvement": "[X% improvement over baseline]",
+      "statistical_significance": "p < 0.05",
+      "business_impact": "[quantified_business_value]"
+    }
+  },
+
+  "mlops_requirements": {
+    "reproducibility": {
+      "required": true,
+      "variance_tolerance": "<2% performance difference",
+      "environment": "containerized with version pinning"
+    },
+    "monitoring": {
+      "data_drift": "basic statistical tests on key features",
+      "performance_drift": "model performance tracking vs baseline", 
+      "alerting": "email/slack alerts for significant drift"
+    },
+    "deployment": {
+      "strategy": "blue_green",
+      "rollback": "manual rollback with documented procedures"
+    }
+  },
+
+  "steps": [
+    {
+      "id": 1,
+      "agent": "@data-engineer",
+      "task": "Data Discovery and Pipeline Setup",
+      "deliverable": "data-pipeline-v1/",
+      "dependencies": [],
+      "estimated_time": "[5-7 days]",
+      "success_criteria": [
+        "Data sources mapped and accessible",
+        "Initial data quality assessment completed",
+        "Pipeline framework established"
+      ]
+    },
+    {
+      "id": 2,
+      "agent": "@ds-validator",
+      "task": "Data Pipeline Validation",
+      "deliverable": "data-validation-report.md",
+      "dependencies": [1],
+      "estimated_time": "[2-3 days]",
+      "success_criteria": [
+        "Data contracts meet modeling requirements",
+        "Quality standards consistently achieved",
+        "Pipeline reproducibility confirmed"
+      ]
+    },
+    {
+      "id": 3,
+      "agent": "@data-scientist",
+      "task": "Baseline Analysis and Model Development",
+      "deliverable": "model-v1/",
+      "dependencies": [2],
+      "estimated_time": "[10-14 days]",
+      "success_criteria": [
+        "Baseline established and documented",
+        "Model beats baseline with statistical significance",
+        "Features engineered without leakage"
+      ]
+    },
+    {
+      "id": 4,
+      "agent": "@ds-validator",
+      "task": "Model Validation and Quality Check",
+      "deliverable": "model-validation-report.md",
+      "dependencies": [3],
+      "estimated_time": "[3-4 days]",
+      "success_criteria": [
+        "No data leakage detected",
+        "Evaluation protocol validated",
+        "Model ready for deployment"
+      ]
+    },
+    {
+      "id": 5,
+      "agent": "@ml-engineer",
+      "task": "Model Deployment and Monitoring Setup",
+      "deliverable": "production-deployment/",
+      "dependencies": [4],
+      "estimated_time": "[7-10 days]",
+      "success_criteria": [
+        "Model deployed with monitoring",
+        "Performance tracking operational",
+        "Rollback procedures tested"
+      ]
+    },
+    {
+      "id": 6,
+      "agent": "@ds-validator",
+      "task": "Production Readiness Validation",
+      "deliverable": "production-validation-report.md",
+      "dependencies": [5],
+      "estimated_time": "[2-3 days]",
+      "success_criteria": [
+        "Production deployment validated",
+        "Monitoring alerts functional",
+        "Documentation complete"
+      ]
+    }
+  ],
+
+  "risks": [
+    {
+      "category": "data_quality",
+      "description": "Data quality issues impact model performance",
+      "probability": "medium",
+      "impact": "medium",
+      "mitigation": "Comprehensive DQ testing + data validation gates"
+    },
+    {
+      "category": "timeline",
+      "description": "Project timeline optimistic given dependencies",
+      "probability": "medium", 
+      "impact": "low",
+      "mitigation": "Buffer time included + phased delivery approach"
+    },
+    {
+      "category": "stakeholder_alignment",
+      "description": "Business requirements change during development",
+      "probability": "medium",
+      "impact": "medium",
+      "mitigation": "Regular stakeholder reviews + clear success criteria"
+    }
+  ],
+
+  "acceptance_criteria": {
+    "data_quality": ">95% DQ test pass rate sustained over 30 days",
+    "model_performance": "[specific_metric] > [baseline] by [improvement%]",
+    "reproducibility": "<2% variance across training runs",
+    "deployment": "Automated deployment with <4 hour rollback capability",
+    "business_impact": "[quantified_business_value] within [timeframe]"
+  },
+
+  "technology_stack": {
+    "data_pipeline": ["[orchestration_tool]", "[database]", "[transformation_tool]"],
+    "ml_framework": ["[ml_library]", "[experiment_tracking]", "[model_registry]"],
+    "deployment": ["[container_technology]", "[serving_platform]", "[monitoring_tool]"],
+    "infrastructure": ["[cloud_provider]", "[compute]", "[storage]"]
+  },
+
+  "final_deliverables": [
+    "Automated data pipeline with quality monitoring",
+    "Validated ML model with documented evaluation",
+    "Production deployment with basic monitoring and rollback",
+    "Documentation and handover to operations team"
+  ]
+}

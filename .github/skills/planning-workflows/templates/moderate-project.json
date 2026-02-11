@@ -1,0 +1,119 @@
+{
+  "task_name": "[moderate-complexity-project]",
+  "description": "[Brief description focusing on 2-4 domain integration]",
+  "estimated_duration": "4-8 weeks",
+  "complexity_level": "moderate",
+  "stakeholders": ["[primary_stakeholder]", "[technical_lead]", "[business_owner]"],
+  "validation_criteria": [
+    "Cross-domain coherence between specialists",
+    "Technical feasibility validated",
+    "Business viability confirmed"
+  ],
+  "steps": [
+    {
+      "id": 1,
+      "agent": "@business-specialist",
+      "task": "Analyze business requirements and strategic objectives",
+      "deliverable": "business-requirements.md",
+      "dependencies": [],
+      "estimated_time": "3-5 days",
+      "success_criteria": [
+        "Clear business objectives defined",
+        "Stakeholder needs identified",
+        "Success metrics established"
+      ]
+    },
+    {
+      "id": 2,
+      "agent": "@tech-specialist",
+      "task": "Design technical architecture based on business requirements",
+      "deliverable": "technical-architecture.md",
+      "dependencies": [1],
+      "estimated_time": "5-7 days",
+      "success_criteria": [
+        "Scalable architecture designed",
+        "Technology stack selected",
+        "Implementation approach defined"
+      ]
+    },
+    {
+      "id": 3,
+      "agent": "@validator",
+      "task": "Validate alignment between business and technical approaches",
+      "deliverable": "validation-report-step3.md",
+      "dependencies": [1, 2],
+      "estimated_time": "2-3 days",
+      "success_criteria": [
+        "No conflicts between business and technical requirements",
+        "Implementation approach supports business objectives",
+        "Risk factors identified and mitigated"
+      ]
+    },
+    {
+      "id": 4,
+      "agent": "@creative-specialist",
+      "task": "Design user experience and interface strategy",
+      "deliverable": "ux-design-strategy.md",
+      "dependencies": [1, 2],
+      "estimated_time": "4-6 days",
+      "success_criteria": [
+        "User-centered design completed",
+        "Interface strategy aligns with technical architecture",
+        "Accessibility requirements addressed"
+      ]
+    },
+    {
+      "id": 5,
+      "agent": "@data-specialist",
+      "task": "Design analytics and data architecture",
+      "deliverable": "data-architecture.md",
+      "dependencies": [2, 4],
+      "estimated_time": "4-6 days",
+      "success_criteria": [
+        "Data pipeline architecture defined",
+        "Analytics requirements integrated",
+        "Performance monitoring strategy established"
+      ]
+    },
+    {
+      "id": 6,
+      "agent": "@validator",
+      "task": "Final integration validation across all domains",
+      "deliverable": "final-validation-report.md",
+      "dependencies": [3, 4, 5],
+      "estimated_time": "3-4 days",
+      "success_criteria": [
+        "All specialist outputs coherently integrated",
+        "No architectural conflicts identified",
+        "Ready for implementation phase"
+      ]
+    }
+  ],
+  "risk_factors": [
+    {
+      "category": "technical",
+      "description": "Technology integration complexity",
+      "mitigation": "Proof of concept development and early testing"
+    },
+    {
+      "category": "business",
+      "description": "Stakeholder alignment challenges",
+      "mitigation": "Regular validation checkpoints and clear communication"
+    }
+  ],
+  "success_metrics": {
+    "delivery": {
+      "timeline_adherence": "95% of milestones met on schedule",
+      "quality_score": "90%+ validation pass rate"
+    },
+    "integration": {
+      "coherence_score": "No critical conflicts between domains",
+      "stakeholder_approval": "Unanimous approval on final deliverables"
+    }
+  },
+  "final_deliverables": [
+    "Integrated project specification with business, technical, UX, and data components",
+    "Implementation roadmap with validated dependencies",
+    "Risk mitigation plan with monitoring strategies"
+  ]
+}

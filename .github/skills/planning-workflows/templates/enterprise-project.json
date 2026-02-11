@@ -1,0 +1,374 @@
+{
+  "task_name": "[enterprise-transformation-project]",
+  "description": "[Large-scale enterprise transformation with full organizational impact, compliance requirements, and strategic importance]",
+  "estimated_duration": "12-24 months",
+  "complexity_level": "enterprise",
+  "governance": {
+    "steering_committee": ["C-level executives", "Division heads", "External advisors"],
+    "project_governance": "Stage-gate process with formal approvals",
+    "compliance_framework": "SOX, GDPR, ISO 27001, Industry regulations",
+    "change_control": "Formal change management board"
+  },
+  "stakeholders": [
+    "CEO/CTO/CISO",
+    "Board of Directors",
+    "Division leaders",
+    "IT organization",
+    "Business units",
+    "Compliance team",
+    "Legal team",
+    "External partners",
+    "End user communities",
+    "Vendor ecosystem"
+  ],
+  "validation_criteria": [
+    "Enterprise architecture compliance validated",
+    "Security and risk frameworks certified", 
+    "Regulatory compliance audit passed",
+    "Multi-organizational change readiness confirmed",
+    "Vendor and partner ecosystem aligned",
+    "Business continuity plans tested"
+  ],
+  "phases": [
+    {
+      "phase": "Strategy & Discovery",
+      "duration": "8-12 weeks",
+      "critical_milestone": "Strategy approval and funding commitment",
+      "steps": [1, 2, 3, 4, 5]
+    },
+    {
+      "phase": "Architecture & Design",
+      "duration": "12-16 weeks", 
+      "critical_milestone": "Enterprise architecture board approval",
+      "steps": [6, 7, 8, 9, 10]
+    },
+    {
+      "phase": "Implementation Planning",
+      "duration": "8-12 weeks",
+      "critical_milestone": "Implementation readiness certification",
+      "steps": [11, 12, 13, 14, 15]
+    }
+  ],
+  "steps": [
+    {
+      "id": 1,
+      "agent": "@business-specialist",
+      "phase": "Strategy & Discovery",
+      "task": "Enterprise strategic assessment and transformation vision",
+      "deliverable": "enterprise-transformation-strategy.md",
+      "dependencies": [],
+      "estimated_time": "3-4 weeks",
+      "governance_checkpoints": ["Stakeholder alignment", "Board presentation"],
+      "success_criteria": [
+        "Enterprise strategic objectives clearly articulated",
+        "Transformation vision aligned with corporate strategy",
+        "Business case with detailed ROI modeling",
+        "Executive sponsorship confirmed",
+        "Initial budget approval obtained"
+      ]
+    },
+    {
+      "id": 2,
+      "agent": "@validator",
+      "phase": "Strategy & Discovery",
+      "task": "Strategic vision validation and governance framework establishment",
+      "deliverable": "governance-validation-report.md",
+      "dependencies": [1],
+      "estimated_time": "2 weeks",
+      "governance_checkpoints": ["Governance structure approval"],
+      "success_criteria": [
+        "Strategic vision coherence validated",
+        "Governance framework established",
+        "Risk assessment framework defined",
+        "Compliance requirements mapped"
+      ]
+    },
+    {
+      "id": 3,
+      "agent": "@data-specialist", 
+      "phase": "Strategy & Discovery",
+      "task": "Enterprise data landscape assessment and governance strategy",
+      "deliverable": "enterprise-data-strategy.md",
+      "dependencies": [1],
+      "estimated_time": "3-4 weeks",
+      "governance_checkpoints": ["Data governance board review"],
+      "success_criteria": [
+        "Complete enterprise data inventory",
+        "Data governance framework designed",
+        "Privacy and compliance gaps identified",
+        "Data monetization opportunities assessed",
+        "Master data management strategy"
+      ]
+    },
+    {
+      "id": 4,
+      "agent": "@tech-specialist",
+      "phase": "Strategy & Discovery",
+      "task": "Enterprise technology assessment and strategic platform review",
+      "deliverable": "enterprise-tech-assessment.md",
+      "dependencies": [1],
+      "estimated_time": "3-4 weeks",
+      "governance_checkpoints": ["Enterprise architecture review"],
+      "success_criteria": [
+        "Current technology landscape mapped",
+        "Technology debt assessment completed",
+        "Cloud strategy and platform selection",
+        "Security and compliance baseline", 
+        "Integration complexity analysis"
+      ]
+    },
+    {
+      "id": 5,
+      "agent": "@creative-specialist",
+      "phase": "Strategy & Discovery", 
+      "task": "Enterprise user experience strategy and organizational design impact",
+      "deliverable": "enterprise-ux-transformation-strategy.md",
+      "dependencies": [1],
+      "estimated_time": "2-3 weeks",
+      "governance_checkpoints": ["User experience council approval"],
+      "success_criteria": [
+        "Multi-audience user experience strategy",
+        "Digital workplace transformation plan",
+        "Brand and design system implications",
+        "Accessibility and inclusion compliance",
+        "Customer journey transformation roadmap"
+      ]
+    },
+    {
+      "id": 6,
+      "agent": "@validator",
+      "phase": "Architecture & Design",
+      "task": "Cross-domain strategy integration validation and phase gate review",
+      "deliverable": "phase-gate-validation-report.md", 
+      "dependencies": [2, 3, 4, 5],
+      "estimated_time": "2 weeks",
+      "governance_checkpoints": ["Phase gate approval", "Architecture board review"],
+      "success_criteria": [
+        "All strategic components coherently aligned",
+        "No critical architectural conflicts identified",
+        "Implementation feasibility confirmed",
+        "Risk mitigation strategies validated"
+      ]
+    },
+    {
+      "id": 7,
+      "agent": "@tech-specialist",
+      "phase": "Architecture & Design",
+      "task": "Enterprise architecture design and technology platform specification", 
+      "deliverable": "enterprise-architecture-specification.md",
+      "dependencies": [6],
+      "estimated_time": "4-5 weeks",
+      "governance_checkpoints": ["Security architecture review", "Vendor selection approval"],
+      "success_criteria": [
+        "Reference architecture patterns defined",
+        "Technology platform selections finalized",
+        "Security architecture framework",
+        "Integration patterns and standards",
+        "Scalability and performance frameworks"
+      ]
+    },
+    {
+      "id": 8,
+      "agent": "@data-specialist",
+      "phase": "Architecture & Design", 
+      "task": "Enterprise data architecture and analytics platform design",
+      "deliverable": "enterprise-data-architecture.md",
+      "dependencies": [6, 7],
+      "estimated_time": "4-5 weeks",
+      "governance_checkpoints": ["Data architecture review", "Privacy compliance approval"],
+      "success_criteria": [
+        "Enterprise data lake/warehouse architecture",
+        "Real-time and batch analytics platforms",
+        "Data governance and lineage systems",
+        "AI/ML platform architecture",
+        "Data privacy and security framework"
+      ]
+    },
+    {
+      "id": 9,
+      "agent": "@creative-specialist",
+      "phase": "Architecture & Design",
+      "task": "Enterprise design system and multi-platform user experience architecture",
+      "deliverable": "enterprise-design-system-architecture.md", 
+      "dependencies": [6, 7],
+      "estimated_time": "3-4 weeks",
+      "governance_checkpoints": ["Brand compliance review", "Accessibility audit"],
+      "success_criteria": [
+        "Enterprise design system framework",
+        "Multi-platform consistency standards",
+        "Accessibility and inclusion compliance",
+        "Brand integration and governance",
+        "User research and testing framework"
+      ]
+    },
+    {
+      "id": 10,
+      "agent": "@business-specialist",
+      "phase": "Architecture & Design",
+      "task": "Operating model transformation and organizational change architecture",
+      "deliverable": "operating-model-transformation.md",
+      "dependencies": [6, 7, 8, 9],
+      "estimated_time": "3-4 weeks",
+      "governance_checkpoints": ["HR and legal review", "Union consultation"],
+      "success_criteria": [
+        "Future state operating model defined",
+        "Organizational change management plan",
+        "Skills and capability development strategy",
+        "Performance measurement framework",
+        "Cultural transformation roadmap"
+      ]
+    },
+    {
+      "id": 11,
+      "agent": "@validator", 
+      "phase": "Implementation Planning",
+      "task": "Comprehensive enterprise architecture validation and integration testing",
+      "deliverable": "enterprise-architecture-validation.md",
+      "dependencies": [7, 8, 9, 10],
+      "estimated_time": "3 weeks",
+      "governance_checkpoints": ["Final architecture approval", "Implementation readiness review"],
+      "success_criteria": [
+        "All architectural components validated for integration",
+        "Performance and scalability validated",
+        "Security and compliance frameworks certified",
+        "Disaster recovery and business continuity validated"
+      ]
+    },
+    {
+      "id": 12,
+      "agent": "@tech-specialist",
+      "phase": "Implementation Planning",
+      "task": "Enterprise implementation strategy and deployment architecture",
+      "deliverable": "enterprise-implementation-strategy.md", 
+      "dependencies": [11],
+      "estimated_time": "3-4 weeks",
+      "governance_checkpoints": ["Deployment strategy approval", "Vendor readiness review"],
+      "success_criteria": [
+        "Phased implementation roadmap with dependencies",
+        "Environment and deployment strategy",
+        "CI/CD and DevSecOps frameworks",
+        "Monitoring and observability architecture",
+        "Vendor and partner coordination plan"
+      ]
+    },
+    {
+      "id": 13,
+      "agent": "@business-specialist",
+      "phase": "Implementation Planning", 
+      "task": "Enterprise change management and adoption strategy",
+      "deliverable": "enterprise-change-adoption-strategy.md",
+      "dependencies": [11, 12],
+      "estimated_time": "3-4 weeks", 
+      "governance_checkpoints": ["Change management approval", "Training strategy approval"],
+      "success_criteria": [
+        "Comprehensive change management strategy",
+        "Training and enablement programs",
+        "Communication and engagement plans",
+        "Success measurement and KPI framework",
+        "Post-implementation support strategy"
+      ]
+    },
+    {
+      "id": 14,
+      "agent": "@data-specialist",
+      "phase": "Implementation Planning",
+      "task": "Enterprise data migration and governance implementation strategy",
+      "deliverable": "enterprise-data-migration-strategy.md",
+      "dependencies": [11, 12],
+      "estimated_time": "2-3 weeks",
+      "governance_checkpoints": ["Data migration approval", "Privacy compliance final review"],
+      "success_criteria": [
+        "Data migration roadmap and methodology",
+        "Data quality and validation framework",
+        "Master data management implementation",
+        "Data governance operational procedures",
+        "Analytics and reporting implementation plan"
+      ]
+    },
+    {
+      "id": 15,
+      "agent": "@validator",
+      "phase": "Implementation Planning", 
+      "task": "Final enterprise readiness validation and go-live certification",
+      "deliverable": "enterprise-go-live-certification.md",
+      "dependencies": [12, 13, 14],
+      "estimated_time": "2 weeks",
+      "governance_checkpoints": ["Final go-live approval", "Risk sign-off"],
+      "success_criteria": [
+        "All implementation components validated",
+        "Risk mitigation strategies confirmed",
+        "Organization readiness certified",
+        "Vendor and partner readiness confirmed",
+        "Success metrics and monitoring validated"
+      ]
+    }
+  ],
+  "risk_management": {
+    "enterprise_risks": [
+      {
+        "category": "Strategic",
+        "risks": ["Market conditions change", "Competitive disruption", "Regulatory changes"],
+        "mitigation": "Regular strategy reviews and flexible architecture"
+      },
+      {
+        "category": "Operational", 
+        "risks": ["Business disruption", "Skills gap", "Change resistance"],
+        "mitigation": "Phased implementation and comprehensive change management"
+      },
+      {
+        "category": "Technical",
+        "risks": ["Integration failures", "Security breaches", "Performance issues"],
+        "mitigation": "Extensive testing, security frameworks, and performance monitoring"
+      },
+      {
+        "category": "Vendor",
+        "risks": ["Vendor failure", "Technology obsolescence", "Support issues"],
+        "mitigation": "Multi-vendor strategies and vendor performance management"
+      }
+    ],
+    "risk_governance": {
+      "risk_committee": "Enterprise risk management committee",
+      "reporting_frequency": "Monthly to steering committee",
+      "escalation_process": "Defined escalation paths to C-level",
+      "risk_appetite": "Conservative with managed innovation zones"
+    }
+  },
+  "compliance_requirements": {
+    "regulatory": ["SOX", "GDPR", "HIPAA", "PCI-DSS", "Industry-specific regulations"],
+    "audit_requirements": "Quarterly compliance audits",
+    "certification_targets": ["ISO 27001", "SOC 2 Type II", "Industry certifications"],
+    "documentation_standards": "Enterprise documentation templates and governance"
+  },
+  "success_metrics": {
+    "strategic": {
+      "business_value": "Target ROI achievement within 18 months",
+      "market_position": "Competitive advantage metrics",
+      "innovation_capacity": "Time-to-market improvement metrics"
+    },
+    "operational": {
+      "efficiency_gains": "Process automation and efficiency metrics",
+      "user_adoption": "Organization-wide adoption and satisfaction",
+      "system_performance": "Availability, performance, and scalability metrics"
+    },
+    "financial": {
+      "cost_optimization": "Operational cost reduction targets",
+      "revenue_impact": "Revenue enhancement from new capabilities", 
+      "investment_return": "Net present value and payback period"
+    }
+  },
+  "technology_architecture": {
+    "cloud_strategy": "Multi-cloud with primary cloud provider",
+    "integration_patterns": "API-first with event-driven architecture",
+    "data_architecture": "Data mesh with federated governance", 
+    "security_framework": "Zero-trust with continuous monitoring",
+    "development_methodology": "DevSecOps with automated compliance"
+  },
+  "final_deliverables": [
+    "Complete enterprise transformation roadmap",
+    "Detailed implementation plans with risk mitigation",
+    "Technology architecture and platform specifications", 
+    "Change management and organizational development strategy",
+    "Governance framework and success measurement system",
+    "Vendor management and partner ecosystem strategy"
+  ]
+}

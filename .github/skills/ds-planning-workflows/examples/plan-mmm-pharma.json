@@ -1,0 +1,389 @@
+{
+  "task_name": "pharma-mmm-media-effectiveness",
+  "description": "Advanced Marketing Mix Model to optimize pharmaceutical marketing spend across HCP channels and patient awareness campaigns",
+  "estimated_duration": "16-20 weeks", 
+  "complexity_level": "complex-ds",
+  "business_objective": "Optimize $50M annual marketing spend with 20% efficiency improvement and accurate attribution across HCP and DTC channels",
+  "stakeholders": [
+    "CMO Pharmaceutical Division",
+    "VP Medical Affairs", 
+    "Director Analytics Excellence",
+    "Marketing Operations Manager",
+    "Regulatory Affairs"
+  ],
+  
+  "deliverables": [
+    {
+      "owner": "@data-engineer",
+      "name": "Multi-Channel Marketing Data Platform", 
+      "paths": ["data/marketing/", "data/sales/", "pipelines/mmm/", "tests/marketing_dq/"],
+      "dod": "unified marketing data contract + sales data integration + weekly refresh pipeline + regulatory compliance",
+      "reviewer": "@ds-validator"
+    },
+    {
+      "owner": "@data-scientist",
+      "name": "MMM Attribution Model",
+      "paths": ["models/mmm/", "experiments/attribution/", "notebooks/mmm_analysis/"],
+      "dod": "Bayesian MMM with adstock + saturation + interaction effects + confidence intervals + scenario planning capability",
+      "reviewer": "@ds-validator"
+    },
+    {
+      "owner": "@ml-engineer", 
+      "name": "MMM Optimization Platform",
+      "paths": ["deployment/mmm/", "optimization/", "dashboard/mmm/"],
+      "dod": "budget optimization engine + scenario simulation + automated reporting + stakeholder dashboard",
+      "reviewer": "@ds-validator"
+    }
+  ],
+
+  "data_contracts": [
+    {
+      "source": "marketing_spend_data",
+      "schema": {
+        "table_name": "marketing_activities_weekly",
+        "primary_key": ["activity_week", "channel", "tactic", "geography"],
+        "columns": [
+          {
+            "name": "activity_week",
+            "type": "DATE", 
+            "nullable": false,
+            "constraints": ["ISO week starting Monday", "within last 3 years"]
+          },
+          {
+            "name": "channel",
+            "type": "STRING",
+            "nullable": false,
+            "constraints": ["HCP_Digital|HCP_Events|DTC_TV|DTC_Digital|Medical_Affairs"]
+          },
+          {
+            "name": "spend_usd",
+            "type": "DECIMAL(12,2)",
+            "nullable": false,
+            "constraints": [">= 0", "< 10000000"]
+          },
+          {
+            "name": "impressions",
+            "type": "BIGINT",
+            "nullable": true,
+            "constraints": [">= 0"]
+          },
+          {
+            "name": "reach_hcp",
+            "type": "INTEGER",
+            "nullable": true,
+            "constraints": ["only for HCP channels", ">= 0", "< 500000"]
+          }
+        ]
+      },
+      "quality_constraints": {
+        "freshness": "Weekly data available by Wednesday following activity week",
+        "completeness": ">98% complete spend data across all channels",
+        "consistency": "spend reconciles with finance systems within 2%", 
+        "validity": "channel mapping consistent with approved media taxonomy"
+      },
+      "sla": {
+        "availability": "99.9% uptime (regulatory compliance)",
+        "refresh_frequency": "weekly",
+        "max_delay": "3 business days from week-end"
+      },
+      "lineage": {
+        "upstream_sources": ["media_buying_systems", "event_management", "digital_platforms"],
+        "transformations": ["currency_conversion", "geography_mapping", "channel_classification"],
+        "downstream_consumers": ["mmm_model", "budget_planning", "performance_reporting"]
+      }
+    },
+    {
+      "source": "sales_performance_data",
+      "schema": {
+        "table_name": "prescription_sales_weekly", 
+        "primary_key": ["sales_week", "product", "geography", "prescriber_type"],
+        "columns": [
+          {
+            "name": "sales_week",
+            "type": "DATE",
+            "nullable": false,
+            "constraints": ["ISO week starting Monday"]
+          },
+          {
+            "name": "product",
+            "type": "STRING", 
+            "nullable": false,
+            "constraints": ["approved product portfolio only"]
+          },
+          {
+            "name": "trx_volume",
+            "type": "INTEGER",
+            "nullable": false,
+            "constraints": [">= 0"]
+          },
+          {
+            "name": "revenue_usd",
+            "type": "DECIMAL(12,2)",
+            "nullable": false, 
+            "constraints": [">= 0"]
+          }
+        ]
+      }
+    }
+  ],
+
+  "evaluation_protocol": {
+    "business_metrics": [
+      {
+        "name": "media_efficiency_improvement",
+        "description": "Improvement in cost per incremental prescription vs. baseline",
+        "target": "20% improvement in cost-per-incremental-TRx"
+      },
+      {
+        "name": "budget_optimization_value",
+        "description": "Additional revenue from optimized budget allocation", 
+        "target": "$10M incremental revenue through reallocation"
+      }
+    ],
+    "model_metrics": ["MAPE", "R2", "DIC", "posterior_predictive_checks"],
+    "validation_strategy": "temporal_split",
+    "temporal_validation": {
+      "training_period": "2021-01-01 to 2024-06-30", 
+      "validation_period": "2024-07-01 to 2024-12-31",
+      "prediction_horizon": "13 weeks (quarterly planning)",
+      "minimum_gap": "no gap (using latest data for forward planning)"
+    },
+    "baseline": {
+      "type": "last_touch_attribution",
+      "description": "Current attribution methodology used by marketing team",
+      "expected_performance": "30% unexplained variance in sales attribution"
+    },
+    "success_criteria": {
+      "minimum_improvement": "R2 > 0.85 for sales prediction vs. 0.70 baseline",
+      "business_impact": "Budget recommendations adoptable by marketing (>80% acceptance)",
+      "statistical_significance": "95% credible intervals exclude zero for all major media effects"
+    }
+  },
+
+  "feature_engineering": {
+    "leakage_prevention": {
+      "prediction_cutoff": "T+0 (real-time optimization, no future data)",
+      "future_information_checks": ["no forward-looking sales data", "no competitor actions", "no internal strategy changes"],
+      "validation_tests": ["adstock_parameter_bounds", "saturation_curve_validation", "interaction_effect_robustness"]
+    },
+    "feature_categories": [
+      {
+        "category": "media_effects",
+        "features": ["hcp_digital_adstocked", "dtc_tv_saturated", "events_carryover"],
+        "transformation_logic": "Adstock (geometric decay) + saturation (Hill curves) + interaction effects",
+        "business_rationale": "Media effects decay over time and show diminishing returns with increased spend"
+      },
+      {
+        "category": "baseline_drivers", 
+        "features": ["seasonality_weekly", "trend", "product_lifecycle"],
+        "transformation_logic": "Fourier transforms for seasonality + smooth trends + categorical lifecycle",
+        "business_rationale": "Sales have underlying patterns independent of marketing"
+      },
+      {
+        "category": "external_factors",
+        "features": ["competitor_activity", "regulatory_events", "disease_awareness"],
+        "transformation_logic": "Event indicators + smooth competitor spend estimates",
+        "business_rationale": "External factors affect sales and must be controlled for attribution"
+      }
+    ]
+  },
+
+  "mlops_requirements": {
+    "reproducibility": {
+      "required": true,
+      "variance_tolerance": "<2% difference in media contribution estimates",
+      "seed_management": "MCMC chain initialization with fixed seeds",
+      "environment": "R environment with Stan/PyMC for Bayesian modeling"
+    },
+    "model_registry": {
+      "required": true,
+      "versioning": "semantic versioning with model lineage tracking",
+      "metadata": "DIC, WAIC, posterior summaries, adstock parameters, saturation curves",
+      "lineage": "media data version + sales data version + external factors version"
+    },
+    "monitoring": {
+      "data_drift": "Statistical tests on media spend distributions + sales patterns",
+      "prediction_drift": "Model prediction accuracy on most recent 4 weeks", 
+      "performance_drift": "Business KPI tracking vs. model recommendations",
+      "alerting": "Monthly model review + automated alerts for >15% prediction errors"
+    },
+    "deployment": {
+      "strategy": "staged_rollout",
+      "rollback": "maintain previous model version for 6 months + A/B testing capability",
+      "testing": "scenario testing + posterior predictive checks + business logic validation"
+    }
+  },
+
+  "steps": [
+    {
+      "id": 1,
+      "agent": "@data-engineer",
+      "task": "Marketing Data Sources Integration and Harmonization",
+      "deliverable": "marketing-data-integration-specs.json",
+      "dependencies": [],
+      "estimated_time": "14 days",
+      "success_criteria": [
+        "All marketing channels mapped to unified taxonomy", 
+        "Spend data reconciled with finance systems (>98% match)",
+        "Data lineage documented for regulatory compliance"
+      ]
+    },
+    {
+      "id": 2,
+      "agent": "@data-engineer", 
+      "task": "Sales Data Integration and KPI Alignment",
+      "deliverable": "sales-marketing-data-pipeline/",
+      "dependencies": [1],
+      "estimated_time": "10 days",
+      "success_criteria": [
+        "Weekly sales data integrated with marketing spend",
+        "Geographic and temporal alignment verified",
+        "Cross-functional KPI definitions agreed"
+      ]
+    },
+    {
+      "id": 3,
+      "agent": "@ds-validator",
+      "task": "Marketing Data Platform Validation", 
+      "deliverable": "reports/marketing-data-validation.md",
+      "dependencies": [2],
+      "estimated_time": "5 days",
+      "success_criteria": [
+        "Data quality meets MMM modeling requirements",
+        "No temporal misalignment between media and sales",
+        "Regulatory compliance verified"
+      ]
+    },
+    {
+      "id": 4,
+      "agent": "@data-scientist",
+      "task": "MMM Baseline Analysis and Model Specification", 
+      "deliverable": "notebooks/mmm_baseline_analysis.ipynb",
+      "dependencies": [3],
+      "estimated_time": "12 days",
+      "success_criteria": [
+        "Sales decomposition into baseline vs. incremental components",
+        "Media overlap analysis and interaction hypothesis development",
+        "Adstock and saturation parameter prior specification"
+      ]
+    },
+    {
+      "id": 5,
+      "agent": "@data-scientist",
+      "task": "Bayesian MMM Model Development",
+      "deliverable": "models/mmm_bayesian_v1/",
+      "dependencies": [4],
+      "estimated_time": "21 days", 
+      "success_criteria": [
+        "Converged MCMC chains with R-hat < 1.1",
+        "Posterior predictive checks validate model assumptions",
+        "Media contribution estimates align with business intuition"
+      ]
+    },
+    {
+      "id": 6,
+      "agent": "@ds-validator",
+      "task": "MMM Model Validation and Robustness Testing",
+      "deliverable": "reports/mmm-model-validation.md", 
+      "dependencies": [5],
+      "estimated_time": "7 days",
+      "success_criteria": [
+        "Model robustness confirmed across validation periods",
+        "Saturation curves and adstock parameters economically reasonable",
+        "Uncertainty quantification appropriate for business decisions"
+      ]
+    },
+    {
+      "id": 7,
+      "agent": "@ml-engineer",
+      "task": "Budget Optimization Engine Development",
+      "deliverable": "optimization/budget_optimizer/",
+      "dependencies": [6], 
+      "estimated_time": "18 days",
+      "success_criteria": [
+        "Constraint optimization engine handles budget and regulatory constraints",
+        "Scenario planning capability for quarterly and annual planning",
+        "Performance benchmarking shows >15% efficiency improvements"
+      ]
+    },
+    {
+      "id": 8,
+      "agent": "@ml-engineer",
+      "task": "MMM Dashboard and Reporting Automation",
+      "deliverable": "dashboard/mmm_stakeholder_dashboard/",
+      "dependencies": [7],
+      "estimated_time": "12 days",
+      "success_criteria": [
+        "Executive dashboard shows media contributions and optimization recommendations",
+        "Automated weekly reporting to marketing stakeholders",
+        "Scenario planning interface for budget planning cycles"
+      ]
+    },
+    {
+      "id": 9,
+      "agent": "@ds-validator",
+      "task": "Production MMM Platform Validation",
+      "deliverable": "reports/mmm-platform-readiness.md",
+      "dependencies": [8],
+      "estimated_time": "5 days", 
+      "success_criteria": [
+        "End-to-end MMM workflow validated from data to recommendations",
+        "Stakeholder training completed and adoption confirmed", 
+        "Monitoring and governance processes operational"
+      ]
+    }
+  ],
+
+  "risks": [
+    {
+      "category": "model_complexity",
+      "description": "Bayesian MMM may be too complex for business stakeholder adoption",
+      "probability": "medium",
+      "impact": "high",
+      "mitigation": "Extensive stakeholder engagement + simplified visualization + training program"
+    },
+    {
+      "category": "data_integration_delays",
+      "description": "Marketing systems integration more complex than anticipated",
+      "probability": "high",
+      "impact": "medium", 
+      "mitigation": "Early technical discovery + backup manual data processes + phased rollout"
+    },
+    {
+      "category": "regulatory_constraints",
+      "description": "Pharmaceutical regulations limit marketing attribution methodologies",
+      "probability": "low",
+      "impact": "high",
+      "mitigation": "Early regulatory review + compliant model specification + audit trail"
+    },
+    {
+      "category": "external_validity", 
+      "description": "Model trained on historical data may not predict future performance",
+      "probability": "medium",
+      "impact": "medium",
+      "mitigation": "Robust validation framework + continuous model updating + scenario stress testing"
+    }
+  ],
+
+  "acceptance_criteria": {
+    "data_quality": ">98% marketing spend data completeness sustained over 90 days",
+    "model_performance": "R2 > 0.85 for sales prediction with 95% credible intervals",
+    "reproducibility": "<2% variance in media contribution estimates across model runs",
+    "production_sla": "Weekly optimization recommendations delivered by Thursday for planning cycles",
+    "business_impact": "20% improvement in media efficiency (cost per incremental TRx) within 12 months"
+  },
+
+  "technology_stack": {
+    "data_pipeline": ["Apache Airflow", "Snowflake", "dbt", "Fivetran"],
+    "ml_framework": ["PyMC3/Stan", "R/tidyverse", "MLflow", "Plotly"], 
+    "deployment": ["Docker", "AWS ECS", "Amazon SageMaker", "Streamlit"],
+    "infrastructure": ["AWS", "S3", "RDS PostgreSQL", "CloudWatch"]
+  },
+
+  "final_deliverables": [
+    "Unified marketing and sales data platform with weekly refresh",
+    "Validated Bayesian MMM with media attribution and confidence intervals",
+    "Automated budget optimization engine with regulatory compliance", 
+    "Executive dashboard and quarterly planning integration for marketing teams"
+  ]
+}

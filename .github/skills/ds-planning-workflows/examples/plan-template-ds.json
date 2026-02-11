@@ -1,0 +1,326 @@
+{
+  "task_name": "[descriptive-ds-project-name]",
+  "description": "[Brief description of the DS project goals and business impact]",
+  "estimated_duration": "[X-Y weeks/months]",
+  "complexity_level": "[simple-ds|moderate-ds|complex-ds|enterprise-ds]",
+  "business_objective": "[Clear business question or problem to solve]",
+  "stakeholders": [
+    "[business-stakeholder]", 
+    "[technical-stakeholder]", 
+    "[data-owner]"
+  ],
+  
+  "deliverables": [
+    {
+      "owner": "@data-engineer",
+      "name": "Data Pipeline and Contracts", 
+      "paths": ["data/", "pipelines/", "tests/data_quality/"],
+      "dod": "data_contract + DQ tests (>95% pass) + runbook + lineage docs",
+      "reviewer": "@ds-validator"
+    },
+    {
+      "owner": "@data-scientist",
+      "name": "Model and Evaluation",
+      "paths": ["models/", "experiments/", "notebooks/"],
+      "dod": "baseline + evaluation protocol + feature spec + leakage checks + reproducible training",
+      "reviewer": "@ds-validator"
+    },
+    {
+      "owner": "@ml-engineer", 
+      "name": "Production Deployment",
+      "paths": ["deployment/", "monitoring/", "serving/"],
+      "dod": "serving pipeline + monitoring + rollback strategy + <1% training variance",
+      "reviewer": "@ds-validator"
+    }
+  ],
+
+  "data_contracts": [
+    {
+      "source": "[data-source-name]",
+      "schema": {
+        "table_name": "[table_name]",
+        "primary_key": ["[key_column]"],
+        "columns": [
+          {
+            "name": "[column_name]",
+            "type": "[data_type]", 
+            "nullable": false,
+            "constraints": ["[constraint_description]"]
+          }
+        ]
+      },
+      "quality_constraints": {
+        "freshness": "[max_delay_hours] hours",
+        "completeness": ">95% non-null for critical fields",
+        "uniqueness": "no duplicates on primary key", 
+        "validity": "[business_rule_description]"
+      },
+      "sla": {
+        "availability": "99.5% uptime",
+        "refresh_frequency": "[daily|hourly|real-time]",
+        "max_delay": "[X hours from source update]"
+      },
+      "lineage": {
+        "upstream_sources": ["[source1]", "[source2]"],
+        "transformations": ["[transformation_description]"],
+        "downstream_consumers": ["[consumer1]", "[consumer2]"]
+      }
+    }
+  ],
+
+  "evaluation_protocol": {
+    "business_metrics": [
+      {
+        "name": "[business_metric]",
+        "description": "[how_it_measures_business_value]",
+        "target": "[target_value_and_timeframe]"
+      }
+    ],
+    "model_metrics": ["accuracy", "precision", "recall", "f1", "auc"],
+    "validation_strategy": "[temporal_split|cross_validation|holdout]",
+    "temporal_validation": {
+      "training_period": "[YYYY-MM-DD to YYYY-MM-DD]", 
+      "validation_period": "[YYYY-MM-DD to YYYY-MM-DD]",
+      "prediction_horizon": "[X days/weeks/months]",
+      "minimum_gap": "[X days between training and prediction]"
+    },
+    "baseline": {
+      "type": "[simple_heuristic|business_rules|historical_average]",
+      "description": "[baseline_methodology]",
+      "expected_performance": "[baseline_metric_value]"
+    },
+    "success_criteria": {
+      "minimum_improvement": "[X% above baseline]",
+      "business_impact": "[quantified_business_value]",
+      "statistical_significance": "p < 0.05"
+    }
+  },
+
+  "feature_engineering": {
+    "leakage_prevention": {
+      "prediction_cutoff": "[strict_temporal_boundary]",
+      "future_information_checks": ["[check1]", "[check2]"],
+      "validation_tests": ["[test_description]"]
+    },
+    "feature_categories": [
+      {
+        "category": "[descriptive|behavioral|contextual|interaction]",
+        "features": ["[feature1]", "[feature2]"],
+        "transformation_logic": "[transformation_description]",
+        "business_rationale": "[why_predictive]"
+      }
+    ]
+  },
+
+  "mlops_requirements": {
+    "reproducibility": {
+      "required": true,
+      "variance_tolerance": "<1% performance difference",
+      "seed_management": "deterministic random seeds",
+      "environment": "containerized with version pinning"
+    },
+    "model_registry": {
+      "required": true,
+      "versioning": "semantic versioning",
+      "metadata": "performance, hyperparameters, data version",
+      "lineage": "training data + feature pipeline tracking"
+    },
+    "monitoring": {
+      "data_drift": "statistical tests on feature distributions",
+      "prediction_drift": "output distribution monitoring", 
+      "performance_drift": "business metric tracking",
+      "alerting": "automated alerts with escalation"
+    },
+    "deployment": {
+      "strategy": "[blue_green|canary|rolling]",
+      "rollback": "automated rollback on performance degradation",
+      "testing": "comprehensive smoke tests + integration tests"
+    }
+  },
+
+  "steps": [
+    {
+      "id": 1,
+      "agent": "@data-engineer",
+      "task": "Data Discovery and Contract Definition",
+      "deliverable": "data-contracts.json",
+      "dependencies": [],
+      "estimated_time": "[X days]",
+      "success_criteria": [
+        "Data sources identified and accessible",
+        "Schema and constraints documented", 
+        "Quality baseline established"
+      ]
+    },
+    {
+      "id": 2,
+      "agent": "@data-engineer", 
+      "task": "Data Pipeline Development",
+      "deliverable": "data-pipeline/",
+      "dependencies": [1],
+      "estimated_time": "[X days]",
+      "success_criteria": [
+        "Pipeline idempotent and reproducible",
+        ">95% DQ test pass rate",
+        "Runbook tested and comprehensive"
+      ]
+    },
+    {
+      "id": 3,
+      "agent": "@ds-validator",
+      "task": "Data Pipeline Validation", 
+      "deliverable": "data-validation-report.md",
+      "dependencies": [2],
+      "estimated_time": "[X days]",
+      "success_criteria": [
+        "Data contracts verified",
+        "Quality standards met",
+        "Reproducibility confirmed"
+      ]
+    },
+    {
+      "id": 4,
+      "agent": "@data-scientist",
+      "task": "Exploratory Analysis and Baseline",
+      "deliverable": "baseline-analysis.ipynb",
+      "dependencies": [3],
+      "estimated_time": "[X days]",
+      "success_criteria": [
+        "Business question clearly framed",
+        "Baseline established and documented",
+        "Data understanding documented"
+      ]
+    },
+    {
+      "id": 5,
+      "agent": "@data-scientist",
+      "task": "Feature Engineering and Model Development",
+      "deliverable": "model-development/",
+      "dependencies": [4],
+      "estimated_time": "[X days]", 
+      "success_criteria": [
+        "Features engineered without leakage",
+        "Model beats baseline with confidence",
+        "Evaluation protocol implemented"
+      ]
+    },
+    {
+      "id": 6,
+      "agent": "@ds-validator",
+      "task": "Model Validation and Leakage Check",
+      "deliverable": "model-validation-report.md", 
+      "dependencies": [5],
+      "estimated_time": "[X days]",
+      "success_criteria": [
+        "No leakage detected",
+        "Statistical significance confirmed",
+        "Evaluation protocol sound"
+      ]
+    },
+    {
+      "id": 7,
+      "agent": "@ml-engineer",
+      "task": "Production Pipeline Development",
+      "deliverable": "production-pipeline/",
+      "dependencies": [6], 
+      "estimated_time": "[X days]",
+      "success_criteria": [
+        "Training pipeline reproducible",
+        "Serving pipeline meets SLAs",
+        "Monitoring framework implemented"
+      ]
+    },
+    {
+      "id": 8,
+      "agent": "@ds-validator",
+      "task": "Production Readiness Validation",
+      "deliverable": "production-readiness-report.md",
+      "dependencies": [7],
+      "estimated_time": "[X days]", 
+      "success_criteria": [
+        "Deployment strategy validated",
+        "Rollback procedures tested",
+        "Monitoring alerts configured"
+      ]
+    }
+  ],
+
+  "risks": [
+    {
+      "category": "data_leakage",
+      "description": "Future information inadvertently used in historical predictions",
+      "probability": "[low|medium|high]",
+      "impact": "[low|medium|high]",
+      "mitigation": "Strict temporal validation + automated leakage detection"
+    },
+    {
+      "category": "reproducibility",
+      "description": "Model training results not reproducible across environments",
+      "probability": "[low|medium|high]",
+      "impact": "[low|medium|high]", 
+      "mitigation": "Containerization + seed management + version pinning"
+    },
+    {
+      "category": "drift",
+      "description": "Data or model performance degradation over time",
+      "probability": "[low|medium|high]",
+      "impact": "[low|medium|high]",
+      "mitigation": "Comprehensive monitoring + automated alerting + retraining strategy"
+    },
+    {
+      "category": "scale", 
+      "description": "Development approach doesn't scale to production data volumes",
+      "probability": "[low|medium|high]",
+      "impact": "[low|medium|high]",
+      "mitigation": "Early prototyping with production data volumes + performance testing"
+    }
+  ],
+
+  "acceptance_criteria": {
+    "data_quality": ">95% DQ test pass rate sustained over 30 days",
+    "model_performance": "[specific_metric] > [baseline_value] by [improvement%]",
+    "reproducibility": "<1% variance in model performance across training runs",
+    "production_sla": "<100ms p95 latency for real-time inference",
+    "business_impact": "[quantified_business_value] within [timeframe]"
+  },
+
+  "technology_stack": {
+    "data_pipeline": ["[ETL_tool]", "[database]", "[orchestration]"],
+    "ml_framework": ["[sklearn|pytorch|tensorflow]", "[mlflow|wandb]", "[model_registry]"],
+    "deployment": ["[container_technology]", "[serving_framework]", "[monitoring_tools]"],
+    "infrastructure": ["[cloud_provider]", "[compute_resources]", "[storage]"]
+  },
+
+  "final_deliverables": [
+    "Production-ready data pipeline with quality monitoring",
+    "Validated ML model with evaluation protocol and performance benchmarks",
+    "Deployment infrastructure with monitoring and rollback capabilities", 
+    "Comprehensive documentation and runbooks for operations"
+  ],
+
+  "__ds_template_instructions__": {
+    "usage": "This is a DS-specific template for creating planning files for data science workflows",
+    "ds_agent_options": [
+      "@head-of-ds-router - DS orchestration with decision rights",
+      "@data-engineer - data pipelines, contracts, quality assurance",
+      "@data-scientist - modeling, evaluation, feature engineering", 
+      "@ml-engineer - production ML, serving, monitoring",
+      "@ds-validator - leakage detection, reproducibility, quality validation"
+    ],
+    "ds_step_guidelines": [
+      "Always start with data discovery and contracts (@data-engineer)",
+      "Include DS validation after each major deliverable (@ds-validator)",
+      "Ensure temporal validation for time-series problems",
+      "Document leakage prevention explicitly",
+      "Include business impact measurement throughout",
+      "Plan for production deployment from the start (@ml-engineer)"
+    ],
+    "ds_quality_gates": [
+      "Data contracts must be validated before modeling",
+      "Models must beat baseline with statistical significance", 
+      "Leakage checks required before production deployment",
+      "Reproducibility verification mandatory for production",
+      "Monitoring must be implemented before go-live"
+    ]
+  }
+}
