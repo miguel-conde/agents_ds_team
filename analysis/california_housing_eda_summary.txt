@@ -1,0 +1,61 @@
+================================================================================
+CALIFORNIA HOUSING - EXPLORATORY DATA ANALYSIS REPORT
+================================================================================
+
+1. DATASET OVERVIEW
+----------------------------------------
+Total Properties: 20,640
+Features: 10
+Memory Usage: 2.60 MB
+
+2. DATA QUALITY ASSESSMENT
+----------------------------------------
+Missing Values:
+  ✅ No missing values detected
+
+Duplicate Records:
+  0 duplicates found (0.00%)
+
+3. SUMMARY STATISTICS
+----------------------------------------
+         MedInc  HouseAge  AveRooms  ...  Latitude  Longitude  MedHouseVal
+count  20640.00  20640.00  20640.00  ...  20640.00   20640.00     20640.00
+mean       3.87     28.64      5.43  ...     35.63    -119.57         2.07
+std        1.90     12.59      2.47  ...      2.14       2.00         1.15
+min        0.50      1.00      0.85  ...     32.54    -124.35         0.15
+25%        2.56     18.00      4.44  ...     33.93    -121.80         1.20
+50%        3.53     29.00      5.23  ...     34.26    -118.49         1.80
+75%        4.74     37.00      6.05  ...     37.71    -118.01         2.65
+max       15.00     52.00    141.91  ...     41.95    -114.31         5.00
+
+[8 rows x 9 columns]
+
+4. TARGET VARIABLE (MedHouseVal) ANALYSIS
+----------------------------------------
+Mean: $207k
+Median: $180k
+Std Dev: $115k
+Range: $15k - $500k
+Skewness: 0.978
+Kurtosis: 0.328
+
+5. FEATURE CORRELATIONS WITH TARGET
+----------------------------------------
+MedHouseVal    1.000000
+MedInc         0.688075
+AveRooms       0.151948
+HouseAge       0.105623
+AveOccup      -0.023737
+Population    -0.024650
+Longitude     -0.045967
+AveBedrms     -0.046701
+Name: MedHouseVal, dtype: float64
+
+6. KEY INSIGHTS
+----------------------------------------
+✓ STRONGEST PREDICTORS:
+  • MedHouseVal: 1.000 correlation
+  • MedInc: 0.688 correlation
+  • AveRooms: 0.152 correlation
+
+✓ DISTRIBUTION CHARACTERISTICS:

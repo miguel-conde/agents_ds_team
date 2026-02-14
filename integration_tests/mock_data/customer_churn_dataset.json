@@ -1,0 +1,130 @@
+{
+  "dataset_description": {
+    "name": "ecommerce_customer_churn",
+    "size": "500K customers, 2-year history",
+    "target": "churned_within_90_days",
+    "churn_rate": 0.25,
+    "features_count": 47,
+    "data_quality_score": 0.82
+  },
+  "sample_customers": [
+    {
+      "customer_id": "CUST_001",
+      "demographics": {
+        "age": 34,
+        "location": "California",
+        "signup_date": "2021-03-15",
+        "customer_segment": "Premium"
+      },
+      "transaction_history": {
+        "total_purchases": 23,
+        "avg_order_value": 156.78,
+        "last_purchase_date": "2023-11-28",
+        "days_since_last_purchase": 15,
+        "purchase_frequency_days": 45.2
+      },
+      "engagement_metrics": {
+        "website_visits_30d": 12,
+        "email_open_rate": 0.68,
+        "support_tickets_count": 1,
+        "app_sessions_30d": 24
+      },
+      "product_preferences": {
+        "favorite_category": "Electronics",
+        "price_sensitivity": "Medium",
+        "brand_loyalty_score": 0.74
+      },
+      "target": {
+        "churned_within_90_days": 0,
+        "churn_probability": 0.23,
+        "risk_score": "Medium"
+      }
+    },
+    {
+      "customer_id": "CUST_002", 
+      "demographics": {
+        "age": 28,
+        "location": "New York",
+        "signup_date": "2020-11-08",
+        "customer_segment": "Regular"
+      },
+      "transaction_history": {
+        "total_purchases": 8,
+        "avg_order_value": 89.45,
+        "last_purchase_date": "2023-09-10",
+        "days_since_last_purchase": 95,
+        "purchase_frequency_days": 120.5
+      },
+      "engagement_metrics": {
+        "website_visits_30d": 2,
+        "email_open_rate": 0.15,
+        "support_tickets_count": 0,
+        "app_sessions_30d": 1
+      },
+      "product_preferences": {
+        "favorite_category": "Fashion",
+        "price_sensitivity": "High",
+        "brand_loyalty_score": 0.31
+      },
+      "target": {
+        "churned_within_90_days": 1,
+        "churn_probability": 0.87,
+        "risk_score": "High"
+      }
+    }
+  ],
+  "data_quality_issues": [
+    {
+      "issue_type": "missing_values",
+      "affected_features": ["email_open_rate", "app_sessions_30d"],
+      "percentage_affected": 0.15,
+      "severity": "Medium"
+    },
+    {
+      "issue_type": "inconsistent_formats",
+      "affected_features": ["signup_date", "last_purchase_date"],
+      "percentage_affected": 0.05,
+      "severity": "High"
+    },
+    {
+      "issue_type": "duplicate_records",
+      "affected_features": ["customer_id"],
+      "percentage_affected": 0.02,
+      "severity": "High"
+    }
+  ],
+  "feature_leakage_risks": [
+    {
+      "feature_name": "total_purchases_after_churn",
+      "risk_level": "Critical",
+      "issue": "Uses data from after target event",
+      "recommendation": "Remove or adjust time window"
+    },
+    {
+      "feature_name": "support_tickets_resolution_time",
+      "risk_level": "Medium", 
+      "issue": "May include tickets created after churn event",
+      "recommendation": "Ensure temporal alignment with prediction time"
+    }
+  ],
+  "baseline_models": {
+    "random_baseline": {
+      "description": "Random predictions based on class distribution",
+      "auc_roc": 0.50,
+      "precision_at_10": 0.25,
+      "recall_at_10": 0.10
+    },
+    "heuristic_baseline": {
+      "description": "Simple rule: churn if no purchase in 60+ days",
+      "auc_roc": 0.67,
+      "precision_at_10": 0.45,
+      "recall_at_10": 0.08
+    },
+    "logistic_regression": {
+      "description": "Logistic regression with basic features",
+      "auc_roc": 0.74,
+      "precision_at_10": 0.68,
+      "recall_at_10": 0.11
+    }
+  }
+}

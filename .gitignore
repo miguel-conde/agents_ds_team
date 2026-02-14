@@ -1,0 +1,451 @@
+# ============================================================================
+# Data Science Project .gitignore
+# ============================================================================
+
+# ============================================================================
+# Python
+# ============================================================================
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+pytestdebug.log
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+doc/_build/
+
+# PyBuilder
+target/
+
+# ============================================================================
+# Jupyter Notebook
+# ============================================================================
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+**/.ipynb_checkpoints/
+
+# Notebook outputs (keep notebooks themselves, ignore checkpoints)
+# To track notebooks: add them explicitly with git add notebooks/*.ipynb
+
+# IPython
+profile_default/
+ipython_config.py
+
+# ============================================================================
+# Virtual Environments
+# ============================================================================
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+pythonenv*
+
+# Virtualenv
+.Python
+
+# Pipenv
+Pipfile.lock
+
+# Poetry
+poetry.lock
+
+# pyenv
+.python-version
+
+# ============================================================================
+# Data Science Specific
+# ============================================================================
+
+# Data files (keep small samples, ignore large datasets)
+data/
+datasets/
+raw_data/
+processed_data/
+*.csv
+*.tsv
+*.dat
+*.data
+*.json.gz
+*.parquet
+*.feather
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+*.joblib
+
+# Exception: Keep small reference files and README
+!data/README.md
+!data/load_data.py
+!data/*_README.txt
+!data/sample_*.csv
+# Note: Do NOT commit generated analysis outputs (CSV/JSON) - regenerate from notebooks
+
+# Generated figures and plots (regenerate from source code/notebooks)
+*.png
+*.jpg
+*.jpeg
+*.svg
+*.pdf
+figures/
+plots/
+visualizations/
+
+# Generated analysis results (regenerate from notebooks)
+*_results.json
+*_results.csv
+*_importance.csv
+*_comparison.csv
+*_comparison.png
+correlation_matrix.csv
+summary_statistics.csv
+learning_curves.png
+predicted_vs_actual.png
+residual_*.png
+feature_importance_*.png
+model_comparison.*
+
+# Large model files (>10MB typically)
+*.h5
+*.hdf5
+*.keras
+*.pb
+*.pth
+*.ckpt
+*.safetensors
+*.bin
+
+# Model checkpoints and weights
+checkpoints/
+models/checkpoints/
+*.ckpt
+checkpoint
+
+# Specific large models - ALWAYS ignore these
+analysis/rf_model.pkl
+analysis/xgb_model.pkl
+analysis/*_model.pkl
+analysis/models/*.pkl
+analysis/*.h5
+
+# HTML visualization files (can be regenerated)
+analysis/figures/*.html
+*.html
+
+# MLflow
+mlruns/
+mlflow/
+
+# Weights & Biases
+wandb/
+
+# TensorBoard logs
+logs/
+*.log
+tensorboard/
+runs/
+
+# ============================================================================
+# IDEs and Editors
+# ============================================================================
+
+# VSCode
+.vscode/
+.code-workspace
+*.code-workspace
+
+# PyCharm
+.idea/
+*.iml
+*.iws
+.idea_modules/
+
+# Spyder
+.spyderproject
+.spyproject
+
+# Rope
+.ropeproject
+
+# Eclipse
+.project
+.pydevproject
+.settings/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-v][a-z]
+[._]sw[a-p]
+*~
+tags
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# ============================================================================
+# Operating Systems
+# ============================================================================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ============================================================================
+# Project Specific
+# ============================================================================
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+*.swp
+*.swo
+*.bak
+*.orig
+
+# Archives (if not needed)
+*.zip
+*.tar.gz
+*.tgz
+*.rar
+*.7z
+
+# Credentials (NEVER commit these!)
+.env
+.env.local
+.env.*.local
+secrets/
+credentials/
+*.key
+*.pem
+*.p12
+*.pfx
+config/secrets.yaml
+config/credentials.json
+
+# API keys and tokens
+api_keys.txt
+tokens.txt
+.secrets
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Large output files
+output/large_*
+results/large_*
+
+# Privacy-sensitive files
+*_private.*
+*_confidential.*
+*_secret.*
+
+# ============================================================================
+# Testing
+# ============================================================================
+.tox/
+.coverage
+.coverage.*
+htmlcov/
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Test output artifacts (regenerated by tests)
+tests/**/artifacts/
+tests/**/artifacts/*.json
+integration_tests/**/results/
+integration_tests/expected_outputs/  # Orphaned design docs for unimplemented tests
+integration_tests/expected_outputs/*.json
+**/test_output/
+**/test_results/
+
+# ============================================================================
+# Documentation
+# ============================================================================
+docs/_build/
+site/
+
+# Mkdocs
+site/
+
+# ============================================================================
+# Miscellaneous
+# ============================================================================
+
+# Compiled source
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Backup files
+*.bak
+*~
+
+# Node (if using Node tools)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# R (if using R)
+.Rhistory
+.RData
+.Rproj.user
+
+# ============================================================================
+# Project-Specific Exceptions (things to KEEP in git)
+# ============================================================================
+
+# Keep hand-written analysis reports and documentation
+!analysis/*_REPORT.md
+!analysis/README.md
+# Note: Generated figures, CSVs, JSONs are excluded - regenerate from notebooks
+
+# Keep small model files for reproducibility (<5MB)
+# Only if explicitly needed for fast inference without retraining
+# !analysis/baseline_linear_model.pkl
+# Large models (rf_model.pkl, xgb_model.pkl) are ignored above
+
+# Keep project documentation
+!README.md
+!PLAN.md
+!PROJECT_COMPLETE.md
+!IDEAS.md
+!AGENTS.md
+
+# Keep requirements and configs
+!requirements.txt
+!pyproject.toml
+!setup.py
+!setup.cfg
+
+# Keep test fixtures (only if actively used in tests)
+!integration_tests/mock_data/*.json
+# Note: expected_outputs/ contains orphaned design docs for unimplemented churn tests
+
+# Keep small reference datasets
+!tests/fixtures/*.csv
+!tests/fixtures/*.json
